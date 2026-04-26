@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpendLens — Privacy-first expense tracker for iPhone</title>
+<meta name="description" content="See where your money goes — without giving anyone else the view. One-time purchase. No subscription. No bank linking. Just iPhone.">
+<meta property="og:title" content="SpendLens — Privacy-first expense tracker for iPhone">
+<meta property="og:description" content="Track every expense in seconds. Multi-currency, on-device receipt scanning, beautiful trends. One-time purchase, forever.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234ECDC4'/%3E%3Cstop offset='100%25' stop-color='%2345B7D1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' fill='url(%23g)'/%3E%3Ccircle cx='28' cy='28' r='12' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Cline x1='38' y1='38' x2='48' y2='48' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --teal: #4ECDC4;
+  --blue: #45B7D1;
+  --teal-glow: rgba(78,205,196,0.3);
+  --bg: #0A0A0F;
+  --bg-2: #0F0F16;
+  --card: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.06);
+  --text: #FFFFFF;
+  --text-2: rgba(255,255,255,0.7);
+  --text-3: rgba(255,255,255,0.45);
+  --green: #96CEB4;
+  --yellow: #FFEAA7;
+  --red: #FF6B6B;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--teal); text-decoration: none; transition: opacity 0.15s; }
+a:hover { opacity: 0.8; }
+
+/* ===== NAV ===== */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  position: relative;
+  z-index: 10;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.nav-logo:hover { opacity: 1; }
+.nav-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-icon svg { width: 22px; height: 22px; }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  font-size: 15px;
+  align-items: center;
+}
+.nav-links a { color: var(--text-2); font-weight: 500; }
+.nav-links a:hover { color: var(--text); opacity: 1; }
+.nav-cta {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+  color: var(--bg) !important;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--teal-glow); opacity: 1; }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  padding: 80px 32px 120px;
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--teal-glow) 0%, transparent 60%);
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 32px;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px;
+  background: var(--teal);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--teal);
+}
+.hero h1 {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+.hero h1 .accent {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 22px;
+  color: var(--text-2);
+  max-width: 620px;
+  margin: 0 auto 48px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+  color: var(--bg);
+  padding: 18px 32px;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 12px 40px var(--teal-glow);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px var(--teal-glow); opacity: 1; }
+.btn-secondary {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  padding: 18px 32px;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.08); opacity: 1; }
+.hero-trust {
+  font-size: 14px;
+  color: var(--text-3);
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ===== HERO PHONE MOCKUP ===== */
+.hero-phone-wrap {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.hero-phone {
+  width: 320px;
+  height: 660px;
+  background: #0A0A0F;
+  border: 8px solid #1a1a1f;
+  border-radius: 48px;
+  padding: 18px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 100px var(--teal-glow);
+  position: relative;
+}
+.hero-phone-screen {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  border-radius: 32px;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.notch {
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 90px; height: 22px;
+  background: #000;
+  border-radius: 100px;
+}
+.mock-greeting { font-size: 13px; color: var(--text-3); margin-top: 36px; margin-bottom: 4px; }
+.mock-title { font-size: 26px; font-weight: 800; margin-bottom: 16px; }
+.mock-card {
+  background: linear-gradient(135deg, #1a2332 0%, #0d1a26 100%);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.mock-card-label { font-size: 11px; color: var(--text-3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+.mock-card-amount { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+.mock-card-amount .currency { font-size: 16px; font-weight: 600; color: var(--text-2); margin-right: 6px; }
+.mock-card-trend { font-size: 12px; color: var(--green); margin-top: 8px; font-weight: 600; }
+.mock-row {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+.mock-row-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.mock-row-text { flex: 1; }
+.mock-row-title { font-size: 13px; font-weight: 600; }
+.mock-row-sub { font-size: 11px; color: var(--text-3); }
+.mock-row-amt { font-size: 14px; font-weight: 700; }
+
+/* ===== FEATURES SECTION ===== */
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 100px 32px;
+}
+.section-header { text-align: center; margin-bottom: 64px; }
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section h2 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.section-lead {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.feature {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 28px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.feature:hover {
+  transform: translateY(-4px);
+  border-color: rgba(78,205,196,0.3);
+}
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  background: rgba(78,205,196,0.1);
+  border: 1px solid rgba(78,205,196,0.2);
+}
+.feature h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.feature p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ===== PRIVACY BLOCK ===== */
+.privacy-block {
+  background: linear-gradient(135deg, rgba(78,205,196,0.08) 0%, rgba(69,183,209,0.04) 100%);
+  border: 1px solid rgba(78,205,196,0.2);
+  border-radius: 24px;
+  padding: 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.privacy-block::before {
+  content: '🔒';
+  position: absolute;
+  font-size: 280px;
+  opacity: 0.04;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.privacy-block > * { position: relative; }
+.privacy-block h2 {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+.privacy-block p {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+.privacy-pills {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.privacy-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 18px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.privacy-pill .check { color: var(--teal); }
+
+/* ===== PRICING ===== */
+.pricing-card {
+  background: linear-gradient(135deg, #1a2332 0%, #0d1a26 100%);
+  border: 1px solid rgba(78,205,196,0.2);
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+.pricing-badge {
+  display: inline-block;
+  background: rgba(78,205,196,0.15);
+  border: 1px solid rgba(78,205,196,0.3);
+  color: var(--teal);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.pricing-name { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+.pricing-price { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: 24px 0; }
+.pricing-amount {
+  font-size: 64px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.04em;
+}
+.pricing-period { color: var(--text-2); font-size: 16px; font-weight: 500; }
+.pricing-tagline { font-size: 15px; color: var(--text-2); margin-bottom: 32px; }
+.pricing-features { text-align: left; margin: 32px 0; padding: 24px; background: rgba(0,0,0,0.2); border-radius: 16px; }
+.pricing-features li {
+  list-style: none;
+  padding: 8px 0;
+  font-size: 15px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pricing-features .check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--card-border);
+  padding: 48px 32px;
+  margin-top: 80px;
+}
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: center;
+}
+.footer-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; margin-bottom: 24px; opacity: 0.9; }
+.footer-logo .nav-icon { width: 28px; height: 28px; }
+.footer-logo .nav-icon svg { width: 18px; height: 18px; }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.footer-links a { color: var(--text-2); }
+.footer-links a:hover { color: var(--teal); }
+.footer-copy { font-size: 13px; color: var(--text-3); }
+.footer-tagline { font-size: 13px; color: var(--text-3); margin-top: 6px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 880px) {
+  .hero h1 { font-size: 52px; }
+  .hero-sub { font-size: 18px; }
+  .section h2 { font-size: 36px; }
+  .features { grid-template-columns: 1fr; }
+  .privacy-block { padding: 36px 24px; }
+  .privacy-block h2 { font-size: 30px; }
+  .pricing-card { padding: 32px 24px; }
+  .pricing-amount { font-size: 52px; }
+  .nav-links { gap: 16px; font-size: 14px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-cta { padding: 8px 14px; font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .hero { padding: 48px 20px 80px; }
+  .hero h1 { font-size: 40px; }
+  .hero-sub { font-size: 16px; }
+  .section { padding: 64px 20px; }
+  .hero-phone { width: 280px; height: 580px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <span class="nav-icon">
+      <svg viewBox="0 0 32 32" fill="none">
+        <circle cx="13" cy="13" r="7" stroke="white" stroke-width="2.5"/>
+        <line x1="19" y1="19" x2="25" y2="25" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </span>
+    SpendLens
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a href="support.html">Support</a>
+    <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" class="nav-cta">Get the app</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    <span>Made in Abu Dhabi · Privacy-first since day one</span>
+  </div>
+  <h1>
+    See where your money goes.<br>
+    <span class="accent">Without giving anyone else the view.</span>
+  </h1>
+  <p class="hero-sub">
+    A beautiful, on-device expense tracker for iPhone. No bank linking. No accounts.
+    No subscription. Just iPhone, iCloud, and you.
+  </p>
+  <div class="hero-cta-row">
+    <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      Download on App Store
+    </a>
+    <a href="#features" class="btn-secondary">See how it works</a>
+  </div>
+  <div class="hero-trust">
+    <span>🔒 Data Not Collected</span>
+    <span>💳 No bank login</span>
+    <span>🌍 55 currencies</span>
+    <span>✨ One-time $6.99</span>
+  </div>
+
+  <!-- Phone mockup -->
+  <div class="hero-phone-wrap">
+    <div class="hero-phone">
+      <div class="notch"></div>
+      <div class="hero-phone-screen">
+        <div class="mock-greeting">April 2026 · Good evening</div>
+        <div class="mock-title">Dashboard</div>
+        <div class="mock-card">
+          <div class="mock-card-label">This month</div>
+          <div class="mock-card-amount"><span class="currency">AED</span>4,247.50</div>
+          <div class="mock-card-trend">↓ 12% vs last month</div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-row-icon" style="background:rgba(255,234,167,0.15)">🛒</div>
+          <div class="mock-row-text">
+            <div class="mock-row-title">Carrefour MOE</div>
+            <div class="mock-row-sub">Groceries · Today</div>
+          </div>
+          <div class="mock-row-amt">AED 247</div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-row-icon" style="background:rgba(255,107,138,0.15)">🍔</div>
+          <div class="mock-row-text">
+            <div class="mock-row-title">Talabat</div>
+            <div class="mock-row-sub">Food · Yesterday</div>
+          </div>
+          <div class="mock-row-amt">AED 68</div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-row-icon" style="background:rgba(150,206,180,0.15)">🚗</div>
+          <div class="mock-row-text">
+            <div class="mock-row-title">Careem</div>
+            <div class="mock-row-sub">Transport · Yesterday</div>
+          </div>
+          <div class="mock-row-amt">AED 45</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="section" id="features">
+  <div class="section-header">
+    <div class="eyebrow">What's inside</div>
+    <h2>Everything you need.<br>Nothing you don't.</h2>
+    <p class="section-lead">Built for people who want to know where their money goes — without becoming a product themselves.</p>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">⚡️</div>
+      <h3>Log in 5 seconds</h3>
+      <p>Two taps from home screen to logged expense. Quick-add widget, Action Button, or Siri — your call.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🌍</div>
+      <h3>55 currencies, native</h3>
+      <p>Track AED, INR, USD, GBP — all together. Live exchange rates from frankfurter.app, cached for offline.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📷</div>
+      <h3>Receipt scanner</h3>
+      <p>Snap a receipt — Apple's Vision framework reads the total, merchant, and date. Entirely on your device.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <h3>Budgets that breathe</h3>
+      <p>Set a budget, get gentle nudges as you approach it. Roll over what you didn't spend. No guilt-trips.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📈</div>
+      <h3>Trends that talk</h3>
+      <p>See category-by-category month-over-month changes with sparklines. Spot the spending creep early.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🪟</div>
+      <h3>5 widget sizes</h3>
+      <p>Small, medium, large, and lock screen. Today's spend, monthly total, or budget progress — at a glance.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🗣</div>
+      <h3>Siri & Shortcuts</h3>
+      <p>"Hey Siri, log 45 dirhams for coffee." Done. Built on App Intents — works with the Action Button too.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📤</div>
+      <h3>Export anytime</h3>
+      <p>CSV for spreadsheets. PDF reports for accountants. Your data is always yours to take with you.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">☁️</div>
+      <h3>iCloud sync</h3>
+      <p>Optional sync across iPhone and iPad through your private iCloud container. Apple can't see it. We can't either.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRIVACY ===== -->
+<section class="section" id="privacy">
+  <div class="privacy-block">
+    <div class="eyebrow">The promise</div>
+    <h2>Your data stays on your device.<br>Period.</h2>
+    <p>SpendLens has no servers. No accounts. No analytics. Nothing about your spending leaves your iPhone — not to us, not to anyone. Apple's "Data Not Collected" privacy label isn't a marketing line. It's the architecture.</p>
+    <div class="privacy-pills">
+      <span class="privacy-pill"><span class="check">✓</span> No bank credentials</span>
+      <span class="privacy-pill"><span class="check">✓</span> No tracking</span>
+      <span class="privacy-pill"><span class="check">✓</span> No ads — ever</span>
+      <span class="privacy-pill"><span class="check">✓</span> No account required</span>
+      <span class="privacy-pill"><span class="check">✓</span> Open source crypto (StoreKit, CloudKit)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="section" id="pricing">
+  <div class="section-header">
+    <div class="eyebrow">Simple pricing</div>
+    <h2>One price. Forever.<br>No subscriptions, ever.</h2>
+    <p class="section-lead">Pay once, own forever. Every future update included. The way apps used to be.</p>
+  </div>
+  <div class="pricing-card">
+    <div class="pricing-badge">⚡️ SpendLens Pro</div>
+    <div class="pricing-name">Unlock everything</div>
+    <div class="pricing-price">
+      <span class="pricing-amount">$6.99</span>
+      <span class="pricing-period">once</span>
+    </div>
+    <p class="pricing-tagline">Free to try with 1 budget and core features.</p>
+    <ul class="pricing-features">
+      <li><span class="check">✓</span> Unlimited budgets &amp; categories</li>
+      <li><span class="check">✓</span> AI receipt scanner</li>
+      <li><span class="check">✓</span> Trends &amp; insights</li>
+      <li><span class="check">✓</span> All 5 widget sizes &amp; lock screen</li>
+      <li><span class="check">✓</span> Custom app icons</li>
+      <li><span class="check">✓</span> CSV &amp; PDF export</li>
+      <li><span class="check">✓</span> Every future update — free</li>
+    </ul>
+    <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex; width:100%; justify-content:center;">
+      Download on App Store
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span class="nav-icon">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="13" cy="13" r="7" stroke="white" stroke-width="2.5"/>
+          <line x1="19" y1="19" x2="25" y2="25" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      SpendLens
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="support.html">Support</a>
+      <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener">App Store</a>
+      <a href="mailto:businessforzeeshan@gmail.com">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Zeeshan Ahmed. All rights reserved.</div>
+    <div class="footer-tagline">Made with ☕ in Abu Dhabi.</div>
+  </div>
+</footer>
+
+</body>
+</html>
