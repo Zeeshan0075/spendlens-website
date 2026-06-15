@@ -120,7 +120,7 @@ footer {
 
 <div class="content">
   <h1>Terms &amp; Conditions</h1>
-  <div class="updated">Last updated: April 2026</div>
+  <div class="updated">Last updated: June 2026</div>
 
   <h2>1. Acceptance of terms</h2>
   <p>By downloading, installing, or using SpendLens ("the App"), you agree to be bound by these Terms &amp; Conditions ("Terms"). If you do not agree to these Terms, do not download or use the App.</p>
@@ -161,15 +161,15 @@ footer {
   <h2>9. SMS Auto-Capture (where available)</h2>
   <p>If your version of the App includes the Inbox feature for SMS-based transaction capture, you understand and agree that:</p>
   <ul>
-    <li>The feature relies on iOS Shortcuts Personal Automations that you configure manually</li>
-    <li>The App parses message content using on-device tools (Apple Foundation Models or local regex)</li>
-    <li>Parsing is not guaranteed to be accurate; you must review every captured transaction before approving it</li>
-    <li>You are responsible for ensuring the iOS Shortcuts automation works correctly on your device</li>
-    <li>The App cannot read SMS directly under any circumstances; you control which senders trigger automations</li>
+    <li>The feature is opt-in and relies on an iOS Shortcuts Personal Automation you configure manually, triggered by your account currency.</li>
+    <li>When Smart Parsing is enabled, the captured message text is sent over an encrypted connection to a cloud parsing service (operated via Cloudflare Workers and Google's Gemini API) to extract the transaction. When Smart Parsing is disabled, no message text is transmitted.</li>
+    <li>Parsing is not guaranteed to be accurate; you must review every captured transaction before approving it.</li>
+    <li>You are responsible for ensuring the iOS Shortcuts automation works correctly on your device.</li>
+    <li>The App cannot read SMS directly under any circumstances.</li>
   </ul>
 
   <h2>10. Notifications</h2>
-  <p>SpendLens sends local notifications for budget alerts, recurring expense reminders, and similar informational events. These notifications are reminders only. The Developer is not responsible for missed notifications, delayed notifications, or any financial consequences arising from missed budget thresholds. Notification delivery depends on your device settings and iOS behavior, which are outside the Developer's control.</p>
+  <p>SpendLens sends local notifications for recurring expense reminders and similar informational events. These notifications are reminders only. The Developer is not responsible for missed notifications, delayed notifications, or any financial consequences arising from missed budget thresholds. Notification delivery depends on your device settings and iOS behavior, which are outside the Developer's control.</p>
 
   <h2>11. Disclaimer of warranties</h2>
   <p>The App is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. The Developer does not warrant that the App will be error-free, uninterrupted, secure, or free of harmful components. The Developer does not warrant the accuracy of any data, calculations, currency conversions, OCR results, or AI-parsed transaction data provided by the App.</p>
@@ -181,7 +181,7 @@ footer {
   <p>The App, including its design, code, branding, logos, name "SpendLens," visual identity, and all content, is the intellectual property of Zeeshan Ahmed and is protected by copyright, trademark, and other applicable laws. You may not copy, modify, distribute, sell, lease, or reverse engineer any part of the App except as expressly permitted by these Terms or by Apple's App Store Standard EULA.</p>
 
   <h2>14. Third-party services</h2>
-  <p>The App relies on services and frameworks provided by Apple Inc. (including iOS, iCloud, CloudKit, StoreKit, Vision, App Intents, and Foundation Models) and on the public exchange rate API at frankfurter.app. The Developer is not responsible for the availability, accuracy, security, or terms of these third-party services. Your use of those services is governed by their respective terms.</p>
+  <p>The App relies on services and frameworks provided by Apple Inc. (including iOS, iCloud, CloudKit, StoreKit, Vision, and App Intents) and on the public exchange-rate API at frankfurter.app. If you enable Smart Parsing, the App also uses a cloud parsing service hosted on Cloudflare Workers, which forwards bank SMS text to Google's Gemini API for transaction extraction. The Developer is not responsible for the availability, accuracy, security, or terms of these third-party services. Your use of those services is governed by their respective terms.</p>
 
   <h2>15. Termination</h2>
   <p>You may stop using the App at any time by deleting it from your device. The Developer reserves the right to discontinue the App, withdraw it from the App Store, or stop providing updates at any time without prior notice. In the event of discontinuation, previously purchased licenses remain valid for download and reinstallation through your Apple ID purchase history, subject to Apple's policies.</p>
