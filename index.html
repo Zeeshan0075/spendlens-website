@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SpendLens — Privacy-first expense tracker for iPhone</title>
-<meta name="description" content="See where your money goes — without giving anyone else the view. One-time purchase. No subscription. No bank linking. Just iPhone.">
+<meta name="description" content="An iPhone expense tracker that reads your bank's SMS alerts. Free to try, one-time purchase to unlock Pro. No subscription. No bank linking. No account.">
 <meta property="og:title" content="SpendLens — Privacy-first expense tracker for iPhone">
 <meta property="og:description" content="Track every expense in seconds. Multi-currency, on-device receipt scanning, beautiful trends. One-time purchase, forever.">
 <meta property="og:type" content="website">
@@ -265,6 +265,52 @@ nav {
 .mock-row-sub { font-size: 11px; color: var(--text-3); }
 .mock-row-amt { font-size: 14px; font-weight: 700; }
 
+/* ===== CAPTURE SECTION ===== */
+.capture-block {
+  background: linear-gradient(135deg, rgba(78,205,196,0.08) 0%, rgba(69,183,209,0.04) 100%);
+  border: 1px solid rgba(78,205,196,0.2);
+  border-radius: 24px;
+  padding: 56px;
+  text-align: center;
+}
+.capture-block h2 { font-size: 42px; margin-bottom: 20px; }
+.capture-lead {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 640px;
+  margin: 0 auto 20px;
+  line-height: 1.65;
+}
+.capture-note {
+  font-size: 15px;
+  color: var(--text-3);
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+.capture-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: left;
+}
+.capture-step {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+}
+.capture-step-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.capture-step p { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
 /* ===== FEATURES SECTION ===== */
 .section {
   max-width: 1080px;
@@ -475,6 +521,9 @@ footer {
   .features { grid-template-columns: 1fr; }
   .privacy-block { padding: 36px 24px; }
   .privacy-block h2 { font-size: 30px; }
+  .capture-block { padding: 36px 24px; }
+  .capture-block h2 { font-size: 30px; }
+  .capture-steps { grid-template-columns: 1fr; }
   .pricing-card { padding: 32px 24px; }
   .pricing-amount { font-size: 52px; }
   .nav-links { gap: 16px; font-size: 14px; }
@@ -493,7 +542,7 @@ footer {
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">
+  <a href="./index.html" class="nav-logo">
     <span class="nav-icon">
       <svg viewBox="0 0 32 32" fill="none">
         <circle cx="13" cy="13" r="7" stroke="white" stroke-width="2.5"/>
@@ -503,10 +552,11 @@ footer {
     SpendLens
   </a>
   <div class="nav-links">
+    <a href="#capture">Auto-capture</a>
     <a href="#features">Features</a>
     <a href="#privacy">Privacy</a>
-    <a href="support.html">Support</a>
-    <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" class="nav-cta">Get the app</a>
+    <a href="./support.html">Support</a>
+    <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener" class="nav-cta">Get the app</a>
   </div>
 </nav>
 
@@ -521,20 +571,20 @@ footer {
     <span class="accent">Without giving anyone else the view.</span>
   </h1>
   <p class="hero-sub">
-    A beautiful, on-device expense tracker for iPhone. No bank linking. No accounts.
-    No subscription. Just iPhone, iCloud, and you.
+    A beautiful expense tracker for iPhone that reads your bank's SMS alerts.
+    No bank linking. No accounts. No subscription. Just iPhone, iCloud, and you.
   </p>
   <div class="hero-cta-row">
-    <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" class="btn-primary">
+    <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener" class="btn-primary">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
       Download on App Store
     </a>
     <a href="#features" class="btn-secondary">See how it works</a>
   </div>
   <div class="hero-trust">
-    <span>🔒 Data Not Collected</span>
+    <span>🔒 No account, no tracking</span>
     <span>💳 No bank login</span>
-    <span>🌍 55 currencies</span>
+    <span>🌍 57 currencies</span>
     <span>✨ One-time $6.99</span>
   </div>
 
@@ -543,11 +593,11 @@ footer {
     <div class="hero-phone">
       <div class="notch"></div>
       <div class="hero-phone-screen">
-        <div class="mock-greeting">April 2026 · Good evening</div>
+        <div class="mock-greeting">Good evening</div>
         <div class="mock-title">Dashboard</div>
         <div class="mock-card">
           <div class="mock-card-label">This month</div>
-          <div class="mock-card-amount"><span class="currency">AED</span>4,247.50</div>
+          <div class="mock-card-amount"><span class="currency">AED</span> 4,247.50</div>
           <div class="mock-card-trend">↓ 12% vs last month</div>
         </div>
         <div class="mock-row">
@@ -579,6 +629,35 @@ footer {
   </div>
 </section>
 
+<!-- ===== AUTO-CAPTURE ===== -->
+<section class="section" id="capture">
+  <div class="capture-block">
+    <div class="eyebrow">Auto-capture</div>
+    <h2>Your bank already texts you.<br>Let it do the typing.</h2>
+    <p class="capture-lead">
+      When your bank sends a transaction alert, SpendLens turns it into a logged expense.
+      Set it up once with a Shortcuts automation — no bank login, no account linking, no
+      aggregator holding your credentials. Bank sends push notifications instead of SMS?
+      Screenshot it and share to SpendLens; same result.
+    </p>
+    <p class="capture-note">Built for how banks in the UAE, Oman, Saudi, and across the GCC actually work. Auto-capture is off until you switch it on — <a href="./privacy.html#smart-parsing">here's exactly what happens to the text</a>.</p>
+    <div class="capture-steps">
+      <div class="capture-step">
+        <div class="capture-step-num">Once</div>
+        <p>Set up a Personal Automation in Apple's Shortcuts app, pointed at your bank's sender. SpendLens walks you through it.</p>
+      </div>
+      <div class="capture-step">
+        <div class="capture-step-num">Every time</div>
+        <p>A transaction alert arrives. The amount, merchant, date, and currency are pulled out and lined up in your Expenses timeline.</p>
+      </div>
+      <div class="capture-step">
+        <div class="capture-step-num">One tap</div>
+        <p>Tap ✓ to confirm — or swipe it away. Nothing is logged without your say-so.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FEATURES ===== -->
 <section class="section" id="features">
   <div class="section-header">
@@ -595,8 +674,8 @@ footer {
     </div>
     <div class="feature">
       <div class="feature-icon">🌍</div>
-      <h3>55 currencies, native</h3>
-      <p>Track AED, INR, USD, GBP — all together. Live exchange rates from frankfurter.app, cached for offline.</p>
+      <h3>57 currencies, native</h3>
+      <p>Track AED, INR, USD, GBP — all together. Exchange rates refresh daily and cache for offline use.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">📷</div>
@@ -605,8 +684,8 @@ footer {
     </div>
     <div class="feature">
       <div class="feature-icon">📊</div>
-      <h3>Budgets that breathe</h3>
-      <p>Set a budget, get gentle nudges as you approach it. Roll over what you didn't spend. No guilt-trips.</p>
+      <h3>A dashboard that explains</h3>
+      <p>Plain words, not just charts: how this month is pacing, whether you're tracking above or below your usual, and where the money actually went.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">📈</div>
@@ -616,11 +695,11 @@ footer {
     <div class="feature">
       <div class="feature-icon">🪟</div>
       <h3>5 widget sizes</h3>
-      <p>Small, medium, large, and lock screen. Today's spend, monthly total, or budget progress — at a glance.</p>
+      <p>Small, medium, and large on the home screen, plus two lock screen widgets. Today's spend, monthly total, or recent activity — at a glance.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🗣</div>
-      <h3>Siri & Shortcuts</h3>
+      <h3>Siri &amp; Shortcuts</h3>
       <p>"Hey Siri, log 45 dirhams for coffee." Done. Built on App Intents — works with the Action Button too.</p>
     </div>
     <div class="feature">
@@ -631,7 +710,7 @@ footer {
     <div class="feature">
       <div class="feature-icon">☁️</div>
       <h3>iCloud sync</h3>
-      <p>Optional sync across iPhone and iPad through your private iCloud container. Apple can't see it. We can't either.</p>
+      <p>Sync across iPhone and iPad through your own private iCloud container. We can't see it — and with Advanced Data Protection on, neither can Apple.</p>
     </div>
   </div>
 </section>
@@ -640,14 +719,15 @@ footer {
 <section class="section" id="privacy">
   <div class="privacy-block">
     <div class="eyebrow">The promise</div>
-    <h2>Your data stays on your device.<br>Period.</h2>
-    <p>SpendLens has no servers. No accounts. No analytics. Nothing about your spending leaves your iPhone — not to us, not to anyone. Apple's "Data Not Collected" privacy label isn't a marketing line. It's the architecture.</p>
+    <h2>Your data stays on your device.</h2>
+    <p>No accounts. No analytics SDKs. No ads. No bank credentials — ever. Everything you log lives on your iPhone, with sync through your own private iCloud container.</p>
+    <p>One feature is different, and we'd rather tell you than bury it: <strong>Smart Parsing</strong>, which reads your bank's SMS alerts and screenshots, sends that text out to be parsed and sends it straight back. It's off until you turn it on, and our endpoint never writes it to a log or a database. <a href="./privacy.html#smart-parsing">How Smart Parsing works →</a></p>
     <div class="privacy-pills">
       <span class="privacy-pill"><span class="check">✓</span> No bank credentials</span>
       <span class="privacy-pill"><span class="check">✓</span> No tracking</span>
       <span class="privacy-pill"><span class="check">✓</span> No ads — ever</span>
       <span class="privacy-pill"><span class="check">✓</span> No account required</span>
-      <span class="privacy-pill"><span class="check">✓</span> Open source crypto (StoreKit, CloudKit)</span>
+      <span class="privacy-pill"><span class="check">✓</span> No analytics SDKs</span>
     </div>
   </div>
 </section>
@@ -666,17 +746,17 @@ footer {
       <span class="pricing-amount">$6.99</span>
       <span class="pricing-period">once</span>
     </div>
-    <p class="pricing-tagline">Free to try with 1 budget and core features.</p>
+    <p class="pricing-tagline">Free to try with core expense tracking — and bank SMS auto-capture — included.</p>
     <ul class="pricing-features">
-      <li><span class="check">✓</span> Unlimited budgets &amp; categories</li>
+      <li><span class="check">✓</span> Unlimited categories</li>
       <li><span class="check">✓</span> AI receipt scanner</li>
-      <li><span class="check">✓</span> Trends &amp; insights</li>
-      <li><span class="check">✓</span> All 5 widget sizes &amp; lock screen</li>
+      <li><span class="check">✓</span> Insights dashboard &amp; spending trends</li>
+      <li><span class="check">✓</span> All 5 widget sizes, home and lock screen</li>
       <li><span class="check">✓</span> Custom app icons</li>
       <li><span class="check">✓</span> CSV &amp; PDF export</li>
       <li><span class="check">✓</span> Every future update — free</li>
     </ul>
-    <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex; width:100%; justify-content:center;">
+    <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex; width:100%; justify-content:center;">
       Download on App Store
     </a>
   </div>
@@ -694,10 +774,10 @@ footer {
       SpendLens
     </div>
     <div class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-      <a href="support.html">Support</a>
-      <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener">App Store</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms &amp; Conditions</a>
+      <a href="./support.html">Support</a>
+      <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener">App Store</a>
       <a href="mailto:businessforzeeshan@gmail.com">Contact</a>
     </div>
     <div class="footer-copy">© 2026 Zeeshan Ahmed. All rights reserved.</div>

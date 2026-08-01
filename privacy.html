@@ -120,7 +120,7 @@ footer {
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="./index.html" class="nav-logo">
     <span class="nav-icon">
       <svg viewBox="0 0 32 32" fill="none">
         <circle cx="13" cy="13" r="7" stroke="white" stroke-width="2.5"/>
@@ -130,24 +130,25 @@ footer {
     SpendLens
   </a>
   <div class="nav-links">
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="support.html">Support</a>
+    <a href="./privacy.html">Privacy</a>
+    <a href="./terms.html">Terms</a>
+    <a href="./support.html">Support</a>
   </div>
 </nav>
 
 <div class="content">
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: June 2026</div>
+  <div class="updated">Last updated: August 2026</div>
   <div class="badge">SpendLens is private by default.</div>
 
   <p>SpendLens ("the App") is built on a simple principle: your finances are nobody's business but yours. This policy explains what information the App handles and — crucially — what it does not.</p>
 
   <h2>Summary in one paragraph</h2>
-  <p>SpendLens has no accounts and no ads, and by default everything you enter — expenses, categories, notes, receipt images — stays on your iPhone (and, if you enable it, your own private iCloud container). SpendLens has one optional feature, Smart Parsing, which you must explicitly turn on. When it is on, the text of a bank SMS you capture is sent over an encrypted connection to our parsing service to extract the transaction details, then discarded. When it is off (the default), nothing you enter leaves your device through SpendLens. Because Smart Parsing can transmit transaction text when enabled, SpendLens declares this in its App Store privacy label rather than claiming 'Data Not Collected.'</p>
+  <p>SpendLens has no accounts, no analytics, and no ads. Everything you enter stays on your iPhone — and in your own private iCloud container. One optional feature — <a href="#smart-parsing">Smart Parsing</a> — sends message text for processing, and is described in full below. It is off until you turn it on; when it is off, nothing you enter is sent anywhere by SpendLens except to your own iCloud. Because Smart Parsing can transmit transaction text when enabled, SpendLens declares this in its App Store privacy label rather than claiming "Data Not Collected."</p>
 
   <h2>Data storage</h2>
   <p>All data you enter into SpendLens — expenses, categories, notes, receipt images — is stored locally on your device using Apple's Core Data framework. The data lives inside the App's secure sandbox managed by iOS and is encrypted at rest by the operating system.</p>
+  <p>If you use Smart Parsing, captured items are stored the same way. So that you can see what a transaction came from and correct a bad parse, SpendLens keeps the <strong>original text of each captured message</strong> — the SMS body, or the text read from a screenshot — alongside the transaction it produced, on your device and in your private iCloud container. You can delete any captured item, or wipe everything, from within the App.</p>
 
   <h2>Data we do not collect</h2>
   <p>SpendLens does not collect, transmit, or store any of the following:</p>
@@ -163,38 +164,46 @@ footer {
   </ul>
 
   <h2>iCloud sync</h2>
-  <p>If you enable iCloud sync in the App's Settings screen, your expense data syncs across your Apple devices using Apple's CloudKit framework. This data is stored in your <strong>private</strong> iCloud container — the same one that backs apps like Reminders and Notes. SpendLens has no access to this data. Apple has no access to its contents either; it is encrypted in transit and at rest with keys tied to your Apple ID.</p>
-  <p>You can disable iCloud sync at any time in Settings. Disabling sync does not delete your local data. Removing the App from a device removes its local data on that device.</p>
+  <p>When you are signed in to iCloud, your expense data syncs across your Apple devices using Apple's CloudKit framework. This data is stored in your <strong>private</strong> iCloud container — the same one that backs apps like Reminders and Notes. SpendLens has no access to this data. It is encrypted in transit and at rest by Apple, and if you switch on Apple's <a href="https://support.apple.com/en-us/108756" target="_blank" rel="noopener">Advanced Data Protection</a>, it becomes end-to-end encrypted so that not even Apple can read it.</p>
+  <p>Sync is controlled by iOS, not by us. You can stop it at any time in <strong>iOS Settings → [your name] → iCloud → Apps Using iCloud</strong>, or by signing out of iCloud. Doing so does not delete your local data. Removing the App from a device removes its local data on that device.</p>
 
   <h2>Camera access (optional)</h2>
   <p>SpendLens Pro includes an optional receipt scanning feature that uses your iPhone's camera. Camera access is only requested the first time you tap "Scan receipt" and is shown via the standard iOS permission prompt. All text recognition happens on-device using Apple's <strong>Vision framework</strong> — no images are uploaded or transmitted anywhere. The captured receipt image is stored only inside the linked expense in your local database. You can revoke camera access at any time via iOS Settings → Privacy → Camera.</p>
 
   <h2>Currency exchange rates</h2>
-  <p>SpendLens fetches currency exchange rates from <a href="https://www.frankfurter.app" target="_blank" rel="noopener">frankfurter.app</a>, a free open-source service operated by the European Central Bank's published reference rates. These requests are anonymous HTTPS GET requests for a list of currency rates only. They contain no user data, device identifiers, or tracking information. Rates are cached locally for up to 4 hours to minimize requests.</p>
+  <p>SpendLens fetches currency exchange rates through our own endpoint, which sources them from <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>. The rate table is refreshed once a day and cached, so the App works offline against the last rates it fetched. These requests ask for a list of currency rates only — they carry no expense data, no user data, no device identifiers, and no tracking information. The rate provider never sees anything about you or your spending.</p>
 
   <h2>In-app purchases</h2>
   <p>SpendLens uses <strong>Apple's StoreKit</strong> framework for one-time Pro unlocks and optional tip purchases. All payment processing is handled entirely by Apple under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy</a>. SpendLens never receives or stores your payment details, full name, or billing address.</p>
 
   <h2>Notifications</h2>
-  <p>SpendLens uses local notifications to remind you about recurring expense reminders you have set up. These notifications are scheduled and delivered entirely on your device and do not involve any external push notification server. No notification data leaves your device.</p>
+  <p>SpendLens uses local notifications for the recurring expense reminders you set up, and to let you know when a captured transaction is waiting for review. These notifications are scheduled and delivered entirely on your device and do not involve any external push notification server. No notification data leaves your device.</p>
 
   <h2>Siri, Shortcuts &amp; App Intents</h2>
   <p>SpendLens exposes App Intents to Siri and the Shortcuts app so you can voice-log expenses or check totals. When you use Siri, voice processing follows <a href="https://www.apple.com/legal/privacy/data/en/siri/" target="_blank" rel="noopener">Apple's Siri privacy practices</a>. SpendLens itself only receives the parsed parameters (e.g. amount, currency, merchant) and creates the expense locally on your device.</p>
 
-  <h2>SMS Auto-Capture &amp; Smart Parsing (v1.1+)</h2>
-  <p>SpendLens can help you log transactions from your bank's SMS alerts. This is opt-in — it does nothing until you turn on Smart Parsing (off by default) and set up the automation yourself.</p>
-  <p><strong>How it works.</strong> You create a Personal Automation in Apple's Shortcuts app that runs when you receive a message containing your account currency (for example "AED"). That automation hands the message text to SpendLens. SpendLens never reads your Messages app directly — iOS does not allow that, and the automation passes one message at a time.</p>
-  <p><strong>What happens to the text.</strong> When Smart Parsing is on, the message text — together with your category names — is sent over an encrypted HTTPS connection to SpendLens's parsing service to extract the transaction (amount, merchant, date, and similar fields). The request is authenticated with an app-level token that is not tied to your identity or Apple ID. The result is returned to your device, where the transaction appears in your Inbox for review before it becomes an expense.</p>
-  <p><strong>Where the text goes.</strong> Our parsing service runs on Cloudflare Workers and forwards the message text to Google's Gemini API to perform the extraction. We use a paid Google API tier under which your content is not used to train Google's models. Neither our service nor Google retains the message after the request is processed, and our service keeps no logs of message contents.</p>
-  <p>When Smart Parsing is off (the default), no message text is ever sent anywhere. You can turn Smart Parsing off at any time in Settings → Auto-Capture, and delete the Shortcuts automation at any time. Manual entry never touches the network.</p>
-  <p><strong>Your consent.</strong> Smart Parsing is processed on the basis of your explicit consent, given by turning it on and withdrawable at any time by turning it off.</p>
+  <h2 id="smart-parsing">Smart Parsing — bank SMS and screenshots (optional, off by default)</h2>
+  <p>Smart Parsing is the one feature in SpendLens that uses the internet to process your content. It is opt-in and disabled until you turn it on.</p>
+  <p><strong>How it works.</strong> You create a Personal Automation in Apple's Shortcuts app that fires when a message arrives from a sender you choose. The Shortcut passes the message text to SpendLens through a published App Intent. SpendLens sends that text to our processing endpoint, which forwards it to Google's Gemini model to extract the amount, merchant, date, and currency. The structured result comes back and the transaction appears in your Expenses timeline for one-tap approval.</p>
+  <p><strong>Screenshots work the same way.</strong> If your bank sends push notifications instead of SMS, you can share a screenshot to SpendLens. The image is read on your device using Apple's Vision framework, and <strong>only the extracted text is sent</strong> for parsing — the image itself never leaves your iPhone, and it is deleted as soon as the text has been read.</p>
+  <p><strong>What we do with that text.</strong> We keep none of it. Our processing endpoint is stateless — it holds the message only long enough to return a result, and it never writes message content to a log or a database. Your text is not used to train any AI model.</p>
+  <p><strong>What goes with the request.</strong> No account, no name, no device identifier, and no location — SpendLens has none of those to send. The request is authenticated with an app-level token shared by all copies of the App, not tied to you or your Apple ID. As with any web request, your IP address is visible to our endpoint; we use it only to rate-limit abuse, and we do not log it against your messages or build any profile from it.</p>
+  <p><strong>Sub-processors for this feature.</strong> <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a> (request routing) and <a href="https://cloud.google.com/terms/cloud-privacy-notice" target="_blank" rel="noopener">Google Cloud</a> (Gemini via Vertex AI). Each receives the message text in order to produce a parse result, and handles it under its own privacy terms — neither is given any information about who you are.</p>
+  <p><strong>iOS never gives any app direct access to your SMS</strong>, and SpendLens does not read your messages. Only the specific messages your automation forwards are ever processed. You can turn Smart Parsing off, or delete the automation in Shortcuts, at any time — and when it is off (the default), no message text is sent anywhere. Manual entry never touches the network.</p>
+  <p><strong>Your consent.</strong> Smart Parsing is processed on the basis of your explicit consent, given by turning it on and withdrawable at any time by turning it off in Settings → Auto-Capture from SMS.</p>
 
   <h2>Children's privacy</h2>
-  <p>SpendLens is not directed at children under 13 and does not knowingly collect any data from children. Since SpendLens collects no data from any user, there is no risk of children's data being collected.</p>
+  <p>SpendLens is not directed at children under 13 and does not knowingly collect any data from children. SpendLens has no accounts and gathers no personal information from any user, so there is nothing for us to hold about a child.</p>
 
   <h2>Third-party services</h2>
-  <p>By default, the only external service SpendLens contacts is the public exchange-rate endpoint at frankfurter.app, for anonymous currency-rate requests.</p>
-  <p>If you turn on Smart Parsing, SpendLens additionally contacts its own parsing service (hosted on Cloudflare Workers), which forwards the bank SMS text to Google's Gemini API for extraction, as described above. These are the only services that receive transaction text, and only when Smart Parsing is enabled.</p>
+  <p>These are all of the third parties involved in running SpendLens:</p>
+  <ul>
+    <li><strong>Apple</strong> — iOS, iCloud/CloudKit sync, StoreKit purchases, Vision, Siri and App Intents. Governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy</a>.</li>
+    <li><strong>Cloudflare</strong> — hosts and routes our processing endpoint. Handles the exchange-rate requests, and, if you enable Smart Parsing, the message text on its way to be parsed. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Privacy policy</a>.</li>
+    <li><strong>Google Cloud</strong> — runs the Gemini model, via Vertex AI, that extracts transaction details from message text. Only involved when Smart Parsing is enabled. <a href="https://cloud.google.com/terms/cloud-privacy-notice" target="_blank" rel="noopener">Privacy notice</a>.</li>
+    <li><strong>ExchangeRate-API</strong> — supplies the daily currency rate table. It receives a request for rates and nothing else; it never sees you or your data. <a href="https://www.exchangerate-api.com/terms" target="_blank" rel="noopener">Terms</a>.</li>
+  </ul>
+  <p>Cloudflare and Google Cloud are the only parties that ever receive transaction text, and only when Smart Parsing is enabled.</p>
   <p>SpendLens uses no advertising SDKs, no analytics SDKs, no crash reporters linked to your identity, and no third-party trackers of any kind.</p>
 
   <h2>Your rights</h2>
@@ -202,28 +211,29 @@ footer {
   <ul>
     <li><strong>Export</strong> your data as CSV or PDF from Settings → Data</li>
     <li><strong>Delete</strong> all data instantly via Settings → Delete All Data</li>
-    <li><strong>Disable sync</strong> via Settings → iCloud Sync</li>
+    <li><strong>Turn off Smart Parsing</strong> via Settings → Auto-Capture from SMS, so no message text is sent</li>
+    <li><strong>Stop iCloud sync</strong> via iOS Settings → [your name] → iCloud → Apps Using iCloud</li>
     <li><strong>Revoke permissions</strong> for camera, notifications, or Siri at any time in iOS Settings</li>
   </ul>
 
   <h2>Changes to this policy</h2>
-  <p>We may update this privacy policy if the App's functionality changes. Any updates will be reflected on this page with a new "Last updated" date. Since SpendLens collects no data, meaningful changes to this policy are unlikely.</p>
+  <p>We may update this privacy policy if the App's functionality changes. Any updates will be reflected on this page with a new "Last updated" date. If a change materially affects how your data is handled, we will say so plainly rather than quietly editing the page.</p>
 
   <h2>Contact</h2>
   <p>If you have questions about this privacy policy, write to <a href="mailto:businessforzeeshan@gmail.com">businessforzeeshan@gmail.com</a>. We are a solo developer team and respond to every email personally.</p>
 
   <div class="callout">
-    <p><strong>The short version:</strong> Your spending stays on your device by default. The only thing that can ever leave is the text of a bank SMS you choose to capture — and only if you turn on Smart Parsing, only to extract the transaction, never stored or sold.</p>
+    <p><strong>The short version:</strong> Your spending stays on your device. The only thing that can ever leave is the text of a bank message you choose to capture — and only if you turn on Smart Parsing, only for as long as it takes to pull out the amount and merchant. We never log it, never store it, never sell it, and it is never used to train a model.</p>
   </div>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-      <a href="support.html">Support</a>
-      <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener">App Store</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms &amp; Conditions</a>
+      <a href="./support.html">Support</a>
+      <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener">App Store</a>
       <a href="mailto:businessforzeeshan@gmail.com">Contact</a>
     </div>
     <div class="footer-copy">© 2026 Zeeshan Ahmed. Made in Abu Dhabi.</div>

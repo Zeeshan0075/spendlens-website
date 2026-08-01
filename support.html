@@ -164,7 +164,7 @@ footer {
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="./index.html" class="nav-logo">
     <span class="nav-icon">
       <svg viewBox="0 0 32 32" fill="none">
         <circle cx="13" cy="13" r="7" stroke="white" stroke-width="2.5"/>
@@ -174,9 +174,9 @@ footer {
     SpendLens
   </a>
   <div class="nav-links">
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="support.html">Support</a>
+    <a href="./privacy.html">Privacy</a>
+    <a href="./terms.html">Terms</a>
+    <a href="./support.html">Support</a>
   </div>
 </nav>
 
@@ -188,7 +188,7 @@ footer {
 
   <div class="faq">
     <h3>Is SpendLens free?</h3>
-    <p>SpendLens is free to download and includes core expense tracking — log unlimited expenses, use 12 default categories, and set 1 budget at no cost. <strong>SpendLens Pro</strong> is a one-time $6.99 unlock that opens up unlimited budgets, the AI receipt scanner, trends &amp; insights, all 5 widget sizes, custom app icons, CSV/PDF export, and every future update. There are no subscriptions, ever.</p>
+    <p>SpendLens is free to download and includes core expense tracking — log unlimited expenses, use 12 default categories, and capture transactions from your bank's SMS alerts, all at no cost. <strong>SpendLens Pro</strong> is a one-time $6.99 unlock that opens up the insights dashboard, spending trends, the AI receipt scanner, custom categories, all 5 widget sizes, custom app icons, CSV/PDF export, and every future update. There are no subscriptions, ever.</p>
   </div>
 
   <div class="faq">
@@ -215,17 +215,18 @@ footer {
 
   <div class="faq">
     <h3>Is my data really private?</h3>
-    <p>Yes — completely. SpendLens stores all data locally on your device. We have no servers, no accounts, and no way to access your data. If you enable iCloud sync, your data syncs through Apple's private CloudKit container, which only you can access. We earn the App Store's "Data Not Collected" privacy label because we genuinely collect nothing. Read the full <a href="privacy.html">Privacy Policy</a>.</p>
+    <p>Yes. SpendLens stores all data locally on your device. We have no accounts and no way to access your data — there is no login, so there is no database of users to breach. Your data syncs through Apple's private CloudKit container, tied to your Apple ID and reachable only by you.</p>
+    <p>One honest exception: if you switch on <strong>Smart Parsing</strong>, the text of the bank messages you capture is sent out to be read by an AI model and sent straight back. It is off by default, our endpoint never logs or stores it, and it is never used to train a model. We'd rather tell you than bury it — the full detail is in the <a href="./privacy.html#smart-parsing">Privacy Policy</a>.</p>
   </div>
 
   <div class="faq">
     <h3>Why doesn't SpendLens connect to my bank?</h3>
-    <p>By design. Bank-linking apps require you to hand your banking credentials to a third-party data aggregator like Plaid, which sees every transaction across every account. SpendLens is built so we — and nobody else — can see your data. The trade-off is a few seconds of manual entry per expense (or one-tap approval if you're using SMS Auto-Capture in v1.1+).</p>
+    <p>By design. Bank-linking apps require you to hand your banking credentials to a third-party data aggregator like Plaid, which sees every transaction across every account. SpendLens is built so we — and nobody else — can see your data. The trade-off is a few seconds of manual entry per expense — or one tap, if you're using SMS auto-capture.</p>
   </div>
 
   <div class="faq">
     <h3>Where is my data stored?</h3>
-    <p>On your iPhone, in SpendLens's secure app sandbox managed by iOS. If you turn on iCloud sync (Settings → iCloud Sync), an encrypted copy syncs through Apple's private CloudKit container so it appears on your other Apple devices. The Developer cannot access this data, and Apple cannot read its contents either.</p>
+    <p>On your iPhone, in SpendLens's secure app sandbox managed by iOS. While you're signed in to iCloud, an encrypted copy syncs through Apple's private CloudKit container so it appears on your other Apple devices. The Developer cannot access this data. Apple encrypts it in transit and at rest, and if you switch on Advanced Data Protection in iOS it becomes end-to-end encrypted, so not even Apple can read it. To stop syncing, go to iOS Settings → [your name] → iCloud → Apps Using iCloud.</p>
   </div>
 
   <div class="faq">
@@ -235,7 +236,7 @@ footer {
 
   <div class="faq">
     <h3>How do I delete all my data?</h3>
-    <p>Settings → Danger Zone → Delete All Data. You'll be asked to confirm twice. This wipes every expense, category, budget, and receipt from your device. If you have iCloud sync on, the deletion propagates to your other devices automatically. Action cannot be undone, so export first if you want a backup.</p>
+    <p>Settings → Danger Zone → Delete All Data. You'll be asked to confirm twice. This wipes every expense, category, captured message, and receipt from your device. If you have iCloud sync on, the deletion propagates to your other devices automatically. Action cannot be undone, so export first if you want a backup.</p>
   </div>
 
   <div class="section-title">Features</div>
@@ -247,59 +248,65 @@ footer {
 
   <div class="faq">
     <h3>How do widgets work?</h3>
-    <p>Long-press your iPhone home screen → tap the "+" in the top-left → search "SpendLens" → choose a size (small, medium, large, or lock screen) → Add Widget. The small widget is free; medium, large, lock screen, and accessory widgets require SpendLens Pro. Widgets refresh automatically and tap-through to the right screen in the app.</p>
+    <p>Long-press your iPhone home screen → tap the "+" in the top-left → search "SpendLens" → choose a size (small, medium, large, or one of the two lock screen widgets) → Add Widget. The small widget is free; medium, large, and both lock screen widgets require SpendLens Pro. Widgets refresh automatically and tap-through to the right screen in the app.</p>
   </div>
 
   <div class="faq">
     <h3>Does SpendLens work offline?</h3>
-    <p>Yes. All core features work without an internet connection — log expenses, view trends, set budgets, scan receipts. The only feature that requires connectivity is currency exchange rate updates, which refresh every 4 hours. If you're offline, SpendLens uses the last cached rates.</p>
+    <p>Mostly. Logging expenses, viewing trends, and scanning receipts all work with no connection at all. Two things need the internet: exchange rate updates, which refresh once a day and fall back to the last cached rates when you're offline; and Smart Parsing, which needs a connection to read a captured message. A message captured while offline waits in your timeline and parses once you're back online — nothing is lost.</p>
   </div>
 
   <div class="faq">
     <h3>How do I track expenses in different currencies?</h3>
-    <p>When adding an expense, tap the currency code next to the amount and choose from 55 supported currencies. SpendLens converts to your base currency automatically using rates from frankfurter.app (sourced from the European Central Bank). The original amount and currency are always preserved alongside the converted total.</p>
+    <p>When adding an expense, tap the currency code next to the amount and choose from 57 supported currencies. SpendLens converts to your base currency automatically using rates sourced from ExchangeRate-API and refreshed daily. The original amount and currency are always preserved alongside the converted total, and if a live rate isn't available yet the expense is clearly flagged rather than quietly converted wrong.</p>
   </div>
 
   <div class="faq">
     <h3>Can I use Siri to log expenses?</h3>
-    <p>Yes. Try <em>"Hey Siri, log 45 dirhams for coffee in SpendLens"</em> or <em>"Hey Siri, what's my spending today in SpendLens"</em>. You can also bind these as Action Button shortcuts on iPhone 15 Pro and later. The full list of supported phrases lives in iOS Settings → Siri &amp; Search → SpendLens.</p>
+    <p>Yes. Say the app name so iOS routes it correctly — <em>"Hey Siri, log 45 dirhams for coffee in SpendLens"</em> or <em>"Hey Siri, what's my spending today in SpendLens"</em>. You can also bind these as Action Button shortcuts on iPhone 15 Pro and later. The full list of supported phrases lives in iOS Settings → Siri &amp; Search → SpendLens.</p>
   </div>
 
   <div class="faq">
-    <h3>What is the Inbox tab for?</h3>
-    <p>The Inbox (introduced in v1.1) is where transactions captured via SMS Auto-Capture or Share Sheet wait for your one-tap approval. Set up the iOS Shortcut once, and from then on every bank transaction SMS is parsed automatically by your iPhone (using Apple's on-device Foundation Models AI) and lined up for review. Tap the green check to log it. No bank login required, ever.</p>
+    <h3>Where do captured transactions show up?</h3>
+    <p>Right in your <strong>Expenses</strong> timeline. There used to be a separate Inbox tab; it was removed in v1.3 because checking a second list was a chore. Now a captured transaction appears inline, tinted, in the same list as everything else — tap the green ✓ to confirm it, or swipe it away to dismiss. Use the Pending filter chip at the top if you'd rather see only the ones awaiting review, or "Confirm all" to clear them in one go.</p>
+    <p>Set up the iOS Shortcut once and it runs from then on. No bank login required, ever. Parsing happens through our processing endpoint when Smart Parsing is on — see <a href="./privacy.html#smart-parsing">how Smart Parsing works</a>.</p>
   </div>
 
   <div class="faq">
     <h3>SMS Auto-Capture isn't working — what do I do?</h3>
-    <p>Settings → SMS Capture → Run Health Check. The check will tell you whether the iOS Shortcut is firing and parsing correctly. Most issues come from the bank sender name being slightly different than what you set in the automation — open the Shortcuts app, edit your Personal Automation, and check that the sender field matches the SMS sender exactly.</p>
+    <p>Settings → Auto-Capture from SMS → Run Health Check. The check will tell you whether the iOS Shortcut is firing and parsing correctly. Most issues come from the bank sender name being slightly different than what you set in the automation — open the Shortcuts app, edit your Personal Automation, and check that the sender field matches the SMS sender exactly.</p>
+  </div>
+
+  <div class="faq">
+    <h3>My bank sends push notifications, not SMS. Can I still auto-capture?</h3>
+    <p>Yes — screenshot it. Take a screenshot of the notification, tap Share, and choose SpendLens. Your iPhone reads the text off the image locally using Apple's Vision framework, and only that text is sent to be parsed; the image never leaves your phone and is deleted right after. The transaction then lands in your Expenses timeline for the same one-tap ✓ as an SMS capture.</p>
   </div>
 
   <div class="faq">
     <h3>Does SpendLens support Arabic?</h3>
-    <p>Numbers, currencies, and amounts work fine with Arabic input today. Full Arabic-first interface localization with RTL layout is on the roadmap for v1.3. If you'd like to help test the Arabic build when it's ready, drop us a line.</p>
+    <p>Partly. Gulf currencies (AED, SAR, QAR, OMR, KWD, BHD) are fully supported, and receipt scanning and screenshot capture can both read Arabic text. The interface itself is English-only today — full Arabic localization with RTL layout is on the roadmap, but we won't name a version until we're certain we can ship it. If you'd like to help test the Arabic build when it's ready, drop us a line.</p>
   </div>
 
   <div class="faq">
     <h3>Is SpendLens available on Android?</h3>
-    <p>No. SpendLens is iOS-only by design — it's built deeply on iOS-specific frameworks (Vision, Core Data, CloudKit, App Intents, WidgetKit, Foundation Models, Live Activities) that don't have Android equivalents. We have no plans to port the app.</p>
+    <p>No. SpendLens is iOS-only by design — it's built deeply on iOS-specific frameworks (Vision, Core Data, CloudKit, App Intents, WidgetKit, Shortcuts automations) that don't have Android equivalents. We have no plans to port the app.</p>
   </div>
 
   <div class="contact-card">
     <h2>Still need help?</h2>
     <p>We're a solo developer and respond to every email personally — usually within 24 hours.</p>
     <a href="mailto:businessforzeeshan@gmail.com" class="contact-btn">Email businessforzeeshan@gmail.com</a>
-    <p style="margin-top:24px; font-size:13px;">Don't have the app yet? <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener" style="color:#4ECDC4;">Download SpendLens on the App Store</a></p>
+    <p style="margin-top:24px; font-size:13px;">Don't have the app yet? <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener" style="color:#4ECDC4;">Download SpendLens on the App Store</a></p>
   </div>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-      <a href="support.html">Support</a>
-      <a href="https://apps.apple.com/us/app/spendlens-track-money/id6762673414" target="_blank" rel="noopener">App Store</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms &amp; Conditions</a>
+      <a href="./support.html">Support</a>
+      <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener">App Store</a>
       <a href="mailto:businessforzeeshan@gmail.com">Contact</a>
     </div>
     <div class="footer-copy">© 2026 Zeeshan Ahmed. Made in Abu Dhabi.</div>
