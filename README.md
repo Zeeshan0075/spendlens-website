@@ -4,7 +4,7 @@ A 4-page static website for SpendLens, modeled after the SubWise pattern.
 
 ## Live links
 
-- **App Store:** https://apps.apple.com/us/app/spendlens-track-money/id6762673414
+- **App Store:** https://apps.apple.com/app/id6762673414 (storefront-neutral; Apple redirects to the visitor's own store)
 - **Apple ID:** `6762673414`
 - **Bundle ID:** `com.spendlens.app`
 
