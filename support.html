@@ -92,6 +92,15 @@ nav {
   margin: 0;
 }
 .faq p + p { margin-top: 12px; }
+.faq ul {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+.faq li { margin-bottom: 8px; }
+.faq li:last-child { margin-bottom: 0; }
 .faq strong { color: var(--text); font-weight: 600; }
 .contact-card {
   background: linear-gradient(135deg, #0F1A24 0%, #0A1419 100%);
@@ -278,7 +287,12 @@ footer {
 
   <div class="faq">
     <h3>SMS Auto-Capture isn't working — what do I do?</h3>
-    <p>Settings → Auto-Capture from SMS → Run Health Check. The check will tell you whether the iOS Shortcut is firing and parsing correctly. Most issues come from the bank sender name being slightly different than what you set in the automation — open the Shortcuts app, edit your Personal Automation, and check that the sender field matches the SMS sender exactly.</p>
+    <p>Open SpendLens → Settings → Auto-Capture from SMS and look at the card at the top. It tells you whether Smart Parsing is on, and when the last purchase was added.</p>
+    <ul>
+      <li>If it says <strong>bank messages are off</strong>, turn on Smart Parsing on the same screen.</li>
+      <li>If it's on but nothing new has arrived for a while, open Apple's Shortcuts app → Automation and check that your SpendLens automation is still there and set to <strong>Run Immediately</strong>. Most problems come from the automation being switched off, or set to the wrong sender — the sender has to match the name your bank's texts come from exactly.</li>
+      <li>For Apple Pay, the Wallet automation only runs when you pay by tapping your phone in a shop — not for online or in-app payments.</li>
+    </ul>
   </div>
 
   <div class="faq">
