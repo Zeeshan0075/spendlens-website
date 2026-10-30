@@ -182,7 +182,7 @@ footer {
 
   <div class="faq">
     <h3>Is SpendLens free?</h3>
-    <p>SpendLens is free to download and includes core expense tracking — log unlimited expenses, use 12 default categories, and capture transactions from your bank's SMS alerts, all at no cost. <strong>SpendLens Pro</strong> is a one-time $6.99 unlock that opens up the insights dashboard, spending trends, the AI receipt scanner, custom categories, all 5 widget sizes, custom app icons, CSV/PDF export, and every future update. There are no subscriptions, ever.</p>
+    <p>SpendLens is free to download and includes core expense tracking — log unlimited expenses, use 12 default categories, and capture transactions automatically — from your bank's SMS alerts, from Apple Pay in shops, and from your bank app's notifications — all at no cost. <strong>SpendLens Pro</strong> is a one-time $6.99 unlock that opens up the insights dashboard, spending trends, the AI receipt scanner, custom categories, all 5 widget sizes, custom app icons, CSV/PDF export, and every future update. There are no subscriptions, ever.</p>
   </div>
 
   <div class="faq">
@@ -210,12 +210,12 @@ footer {
   <div class="faq">
     <h3>Is my data really private?</h3>
     <p>Yes. SpendLens stores all data locally on your device. We have no accounts and no way to access your data — there is no login, so there is no database of users to breach. Your data syncs through Apple's private CloudKit container, tied to your Apple ID and reachable only by you.</p>
-    <p>One honest exception: if you switch on <strong>Smart Parsing</strong>, the text of the bank messages you capture is sent out to be read by an AI model and sent straight back. It is off by default, our endpoint never logs or stores it, and it is never used to train a model. We'd rather tell you than bury it — the full detail is in the <a href="./privacy.html#smart-parsing">Privacy Policy</a>.</p>
+    <p>One honest exception: if you switch on <strong>Smart Parsing</strong>, the text of the bank messages and notifications you capture is sent out to be read by an AI model and sent straight back. It is off by default, our endpoint never logs or stores it, and it is never used to train a model. Apple Pay purchases are the opposite case: they are read on your device and sent nowhere at all. We'd rather tell you than bury it — the full detail is in the <a href="./privacy.html#smart-parsing">Privacy Policy</a>.</p>
   </div>
 
   <div class="faq">
     <h3>Why doesn't SpendLens connect to my bank?</h3>
-    <p>By design. Bank-linking apps require you to hand your banking credentials to a third-party data aggregator like Plaid, which sees every transaction across every account. SpendLens is built so we — and nobody else — can see your data. The trade-off is a few seconds of manual entry per expense — or one tap, if you're using SMS auto-capture.</p>
+    <p>By design. Bank-linking apps require you to hand your banking credentials to a third-party data aggregator like Plaid, which sees every transaction across every account. SpendLens is built so we — and nobody else — can see your data. The trade-off is a few seconds of manual entry per expense — or one tap, or none at all, if you're using automatic capture.</p>
   </div>
 
   <div class="faq">
@@ -230,7 +230,7 @@ footer {
 
   <div class="faq">
     <h3>How do I delete all my data?</h3>
-    <p>Settings → Danger Zone → Delete All Data. You'll be asked to confirm twice. This wipes every expense, category, captured message, and receipt from your device. If you have iCloud sync on, the deletion propagates to your other devices automatically. Action cannot be undone, so export first if you want a backup.</p>
+    <p>Settings → scroll to the very bottom → <strong>Delete All Data</strong>. You'll be asked to confirm twice. This wipes every expense, category, captured message, and receipt from your device. If you have iCloud sync on, the deletion propagates to your other devices automatically. Action cannot be undone, so export first if you want a backup.</p>
   </div>
 
   <div class="section-title">Features</div>
@@ -247,7 +247,7 @@ footer {
 
   <div class="faq">
     <h3>Does SpendLens work offline?</h3>
-    <p>Mostly. Logging expenses, viewing trends, and scanning receipts all work with no connection at all. Two things need the internet: exchange rate updates, which refresh once a day and fall back to the last cached rates when you're offline; and Smart Parsing, which needs a connection to read a captured message. A message captured while offline waits in your timeline and parses once you're back online — nothing is lost.</p>
+    <p>Mostly. Logging expenses, viewing trends, and scanning receipts all work with no connection at all. Two things need the internet: exchange rate updates, which refresh once a day and fall back to the last cached rates when you're offline; and Smart Parsing, which needs a connection to read a captured message. A message captured while offline waits in your timeline and parses once you're back online — nothing is lost. Apple Pay capture needs no connection at all, since it's handled on your device.</p>
   </div>
 
   <div class="faq">
@@ -257,13 +257,23 @@ footer {
 
   <div class="faq">
     <h3>Can I use Siri to log expenses?</h3>
-    <p>Yes. Say the app name so iOS routes it correctly — <em>"Hey Siri, log 45 dirhams for coffee in SpendLens"</em> or <em>"Hey Siri, what's my spending today in SpendLens"</em>. You can also bind these as Action Button shortcuts on iPhone 15 Pro and later. The full list of supported phrases lives in iOS Settings → Siri &amp; Search → SpendLens.</p>
+    <p>Siri gets you to the right screen rather than doing the typing for you. Say <em>"Hey Siri, add expense in SpendLens"</em> and the app opens straight to the add screen, ready for the amount — Siri doesn't carry the amount or the note itself, so you still enter those.</p>
+    <p>For totals, Siri answers without opening anything: <em>"Hey Siri, how much did I spend today in SpendLens"</em> or <em>"Hey Siri, monthly spending in SpendLens"</em>. Say the app name in the phrase so iOS routes it correctly. Any of these can be bound to the Action Button on iPhone 15 Pro and later, and the full list of phrases lives in iOS Settings → Siri &amp; Search → SpendLens.</p>
   </div>
 
   <div class="faq">
     <h3>Where do captured transactions show up?</h3>
     <p>Right in your <strong>Expenses</strong> timeline. There used to be a separate Inbox tab; it was removed in v1.3 because checking a second list was a chore. Now a captured transaction appears inline, tinted, in the same list as everything else — tap the green ✓ to confirm it, or swipe it away to dismiss. Use the Pending filter chip at the top if you'd rather see only the ones awaiting review, or "Confirm all" to clear them in one go.</p>
+    <p>If you switch on <strong>Auto-approve high-confidence</strong> in Settings → Auto-Capture from SMS, the captures SpendLens is sure about skip the queue and land as ordinary expenses with no tap at all. It's off by default, and everything the app is less certain about still waits for you either way.</p>
     <p>Set up the iOS Shortcut once and it runs from then on. No bank login required, ever. Parsing happens through our processing endpoint when Smart Parsing is on — see <a href="./privacy.html#smart-parsing">how Smart Parsing works</a>.</p>
+  </div>
+
+  <div class="faq">
+    <h3>How do I add Apple Pay purchases automatically?</h3>
+    <p>Open SpendLens → Settings → Auto-Capture from SMS → <strong>Add Apple Pay purchases automatically</strong>. That opens a step-by-step guide. The whole thing is one automation in Apple's Shortcuts app, set up once.</p>
+    <p>The short version: in Shortcuts, open <strong>Automation</strong> → tap <strong>+</strong> → choose <em>"When I tap a Wallet pass or payment card"</em> (on some iOS versions it's called simply Wallet, or Transaction) → select every card you pay with, and untick <strong>Transport</strong> so metro and bus taps aren't logged → choose <strong>Run Immediately</strong> → <strong>New Blank Automation</strong> → <strong>Add Action</strong> → search for SpendLens → <strong>Log Apple Pay Payment</strong> → tap Merchant, Amount and Card in turn and pick the Shortcut Input's Merchant, Amount and Card or Pass.</p>
+    <p>After that, paying in a shop adds the purchase on its own, with the shop's real name. This one is read entirely on your device — it works with Smart Parsing off and with no internet at all.</p>
+    <p><strong>The honest limit:</strong> Apple only fires this for in-store taps. Online and in-app Apple Pay, and your physical card, don't trigger it — for those, set up the bank-notification automation on iOS 27, or keep SMS capture on. And running the automation by hand from the Shortcuts editor adds nothing; it needs a real payment.</p>
   </div>
 
   <div class="faq">
@@ -273,12 +283,20 @@ footer {
 
   <div class="faq">
     <h3>My bank sends push notifications, not SMS. Can I still auto-capture?</h3>
-    <p>Yes — screenshot it. Take a screenshot of the notification, tap Share, and choose SpendLens. Your iPhone reads the text off the image locally using Apple's Vision framework, and only that text is sent to be parsed; the image never leaves your phone and is deleted right after. The transaction then lands in your Expenses timeline for the same one-tap ✓ as an SMS capture.</p>
+    <p>Yes, and on <strong>iOS 27</strong> it can be fully automatic. In Shortcuts, open <strong>Automation</strong> → tap <strong>+</strong> → choose <strong>Notification</strong> → pick the bank or card apps that tell you about purchases (not SpendLens itself, or its own alerts would trigger it) → <strong>Run Immediately</strong> → <strong>Add Action</strong> → search for SpendLens → <strong>Capture Payment Notification</strong> → connect Title, Subtitle, Body and App from the Shortcut Input. From then on, the alerts your bank posts become expenses on their own — which also catches the online and in-app purchases an Apple Pay automation can't see. It reads the alert with Smart Parsing, exactly as it reads a bank SMS, so that switch needs to be on.</p>
+    <p>On earlier versions of iOS, screenshot it instead: take a screenshot of the notification, tap Share, and choose SpendLens. Your iPhone reads the text off the image locally using Apple's Vision framework, and only that text is sent to be parsed; the image never leaves your phone and is deleted right after. The transaction then lands in your Expenses timeline for the same one-tap ✓ as an SMS capture.</p>
+  </div>
+
+  <div class="faq">
+    <h3>The same purchase showed up twice. What now?</h3>
+    <p>It usually won't. When Apple Pay, your bank's notification and your bank's SMS all report the same purchase, SpendLens combines them into one expense and notes <em>Also from Apple Pay</em> on the row so you can see why. Where it isn't certain, it shows the row with a <strong>Same purchase?</strong> badge and lets you decide: ✓ keeps both, ✕ keeps one.</p>
+    <p>If it went the other way and merged two genuinely separate purchases — two coffees at the same place ten minutes apart — swipe the row and choose <strong>2 purchases</strong>. The one it folded away comes back as its own expense.</p>
   </div>
 
   <div class="faq">
     <h3>Does SpendLens support Arabic?</h3>
-    <p>Partly. Gulf currencies (AED, SAR, QAR, OMR, KWD, BHD) are fully supported, and receipt scanning and screenshot capture can both read Arabic text. The interface itself is English-only today — full Arabic localization with RTL layout is on the roadmap, but we won't name a version until we're certain we can ship it. If you'd like to help test the Arabic build when it's ready, drop us a line.</p>
+    <p>Yes — fully, since version 1.4. The entire interface is translated, with proper right-to-left layout across the app, the widgets, and the share extension. Amounts and dates always use Western digits (AED 1,250.00), the same way GCC banking apps show them.</p>
+    <p>To switch: in SpendLens, go to Settings → <strong>App Language</strong>, which opens iOS's own language picker for the app; or set your whole iPhone to Arabic in iOS Settings → General → Language &amp; Region. Gulf currencies (AED, SAR, QAR, OMR, KWD, BHD) are all supported, and receipt scanning and screenshot capture read Arabic text too.</p>
   </div>
 
   <div class="faq">

@@ -347,6 +347,11 @@ nav {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+/* A trailing card left alone on the last row sits centred, not orphaned left.
+   Scoped above the breakpoint, where the grid is still three columns wide. */
+@media (min-width: 881px) {
+  .features > .feature:last-child:nth-child(3n + 1) { grid-column: 2; }
+}
 .feature {
   background: var(--card);
   border: 1px solid var(--card-border);
@@ -568,8 +573,9 @@ footer {
     <span class="accent">Without giving anyone else the view.</span>
   </h1>
   <p class="hero-sub">
-    A beautiful expense tracker for iPhone that reads your bank's SMS alerts.
-    No bank linking. No accounts. No subscription. Just iPhone, iCloud, and you.
+    A beautiful expense tracker for iPhone that fills itself in from Apple Pay and
+    your bank's alerts. No bank linking. No accounts. No subscription. Just iPhone,
+    iCloud, and you.
   </p>
   <div class="hero-cta-row">
     <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener" class="btn-primary">
@@ -582,6 +588,7 @@ footer {
     <span>🔒 No account, no tracking</span>
     <span>💳 No bank login</span>
     <span>🌍 57 currencies</span>
+    <span>🌐 English &amp; Arabic</span>
     <span>✨ One-time $6.99</span>
   </div>
 
@@ -595,7 +602,7 @@ footer {
         <div class="mock-card">
           <div class="mock-card-label">This month</div>
           <div class="mock-card-amount"><span class="currency">AED</span> 4,247.50</div>
-          <div class="mock-card-trend">↓ 12% vs last month</div>
+          <div class="mock-card-trend">↓ 12% vs this time last cycle</div>
         </div>
         <div class="mock-row">
           <div class="mock-row-icon" style="background:rgba(255,234,167,0.15)">🛒</div>
@@ -630,26 +637,39 @@ footer {
 <section class="section" id="capture">
   <div class="capture-block">
     <div class="eyebrow">Auto-capture</div>
-    <h2>Your bank already texts you.<br>Let it do the typing.</h2>
+    <h2>Pay the way you always do.<br>Let the typing happen by itself.</h2>
     <p class="capture-lead">
-      When your bank sends a transaction alert, SpendLens turns it into a logged expense.
-      Set it up once with a Shortcuts automation — no bank login, no account linking, no
-      aggregator holding your credentials. Bank sends push notifications instead of SMS?
-      Screenshot it and share to SpendLens; same result.
+      Tap your phone at a till, get a text from your bank, or let your bank's app post an
+      alert — any of them can become a logged expense. Set it up once with a Shortcuts
+      automation: no bank login, no account linking, no aggregator holding your credentials.
     </p>
-    <p class="capture-note">Built for how banks in the UAE, Oman, Saudi, and across the GCC actually work. Auto-capture is off until you switch it on — <a href="./privacy.html#smart-parsing">here's exactly what happens to the text</a>.</p>
+    <div class="capture-steps" style="margin-bottom:28px">
+      <div class="capture-step">
+        <div class="capture-step-num">Apple Pay</div>
+        <p>Tap to pay in a shop and the purchase appears on its own, with the shop's real name. Read on your device, sent nowhere — it even works offline.</p>
+      </div>
+      <div class="capture-step">
+        <div class="capture-step-num">Bank alerts</div>
+        <p>Your bank's text messages — or, on iOS 27, the notifications its app posts, which catch online and in-app purchases too. Screenshots cover older iOS.</p>
+      </div>
+      <div class="capture-step">
+        <div class="capture-step-num">Counted once</div>
+        <p>When the tap, the notification and the text all report one purchase, it's added once. Two real purchases at the same shop stay two.</p>
+      </div>
+    </div>
+    <p class="capture-note">Built for how banks in the UAE, Oman, Saudi, and across the GCC actually work. Nothing is captured until you set up an automation — <a href="./privacy.html#smart-parsing">here's exactly what happens to the text</a>.</p>
     <div class="capture-steps">
       <div class="capture-step">
         <div class="capture-step-num">Once</div>
-        <p>Set up a Personal Automation in Apple's Shortcuts app, pointed at your bank's sender. SpendLens walks you through it.</p>
+        <p>Set up an automation in Apple's Shortcuts app — for Apple Pay, for your bank's alerts, or both. SpendLens walks you through it.</p>
       </div>
       <div class="capture-step">
         <div class="capture-step-num">Every time</div>
-        <p>A transaction alert arrives. The amount, merchant, date, and currency are pulled out and lined up in your Expenses timeline.</p>
+        <p>A purchase happens — a tap, a text, an alert. The amount, merchant, date, and currency are pulled out and lined up in your Expenses timeline.</p>
       </div>
       <div class="capture-step">
         <div class="capture-step-num">One tap</div>
-        <p>Tap ✓ to confirm — or swipe it away. Nothing is logged without your say-so.</p>
+        <p>Tap ✓ to confirm — or swipe it away. Nothing is added without your say-so, unless you switch on automatic adding for the clear ones.</p>
       </div>
     </div>
   </div>
@@ -675,6 +695,11 @@ footer {
       <p>Track AED, INR, USD, GBP — all together. Exchange rates refresh daily and cache for offline use.</p>
     </div>
     <div class="feature">
+      <div class="feature-icon">🌐</div>
+      <h3>English &amp; Arabic</h3>
+      <p>The whole app translated, with proper right-to-left layout — app, widgets, and share sheet. Amounts stay in Western digits, the way GCC banks show them.</p>
+    </div>
+    <div class="feature">
       <div class="feature-icon">📷</div>
       <h3>Receipt scanner</h3>
       <p>Snap a receipt — Apple's Vision framework reads the total, merchant, and date. Entirely on your device.</p>
@@ -697,7 +722,7 @@ footer {
     <div class="feature">
       <div class="feature-icon">🗣</div>
       <h3>Siri &amp; Shortcuts</h3>
-      <p>"Hey Siri, log 45 dirhams for coffee." Done. Built on App Intents — works with the Action Button too.</p>
+      <p>"Hey Siri, add expense in SpendLens" opens straight to the add screen. Or ask what you spent today and it answers out loud. Action Button too.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">📤</div>
@@ -718,7 +743,7 @@ footer {
     <div class="eyebrow">The promise</div>
     <h2>Your data stays on your device.</h2>
     <p>No accounts. No analytics SDKs. No ads. No bank credentials — ever. Everything you log lives on your iPhone, with sync through your own private iCloud container.</p>
-    <p>One feature is different, and we'd rather tell you than bury it: <strong>Smart Parsing</strong>, which reads your bank's SMS alerts and screenshots, sends that text out to be parsed and sends it straight back. It's off until you turn it on, and our endpoint never writes it to a log or a database. <a href="./privacy.html#smart-parsing">How Smart Parsing works →</a></p>
+    <p>One feature is different, and we'd rather tell you than bury it: <strong>Smart Parsing</strong>, which reads your bank's text messages, its app's notifications, and screenshots, sends that text out to be parsed and sends it straight back. It's off until you turn it on, and our endpoint never writes it to a log or a database. Apple Pay purchases are read on your device and never sent anywhere. <a href="./privacy.html#smart-parsing">How Smart Parsing works →</a></p>
     <div class="privacy-pills">
       <span class="privacy-pill"><span class="check">✓</span> No bank credentials</span>
       <span class="privacy-pill"><span class="check">✓</span> No tracking</span>
@@ -743,7 +768,7 @@ footer {
       <span class="pricing-amount">$6.99</span>
       <span class="pricing-period">once</span>
     </div>
-    <p class="pricing-tagline">Free to try with core expense tracking — and bank SMS auto-capture — included.</p>
+    <p class="pricing-tagline">Free to try with core expense tracking — and automatic capture from Apple Pay, bank texts and notifications — included.</p>
     <ul class="pricing-features">
       <li><span class="check">✓</span> Unlimited categories</li>
       <li><span class="check">✓</span> AI receipt scanner</li>

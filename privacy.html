@@ -132,17 +132,17 @@ footer {
 
 <div class="content">
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: August 2026</div>
+  <div class="updated">Last updated: October 2026</div>
   <div class="badge">SpendLens is private by default.</div>
 
   <p>SpendLens ("the App") is built on a simple principle: your finances are nobody's business but yours. This policy explains what information the App handles and — crucially — what it does not.</p>
 
   <h2>Summary in one paragraph</h2>
-  <p>SpendLens has no accounts, no analytics, and no ads. Everything you enter stays on your iPhone — and in your own private iCloud container. One optional feature — <a href="#smart-parsing">Smart Parsing</a> — sends message text for processing, and is described in full below. It is off until you turn it on; when it is off, nothing you enter is sent anywhere by SpendLens except to your own iCloud. Because Smart Parsing can transmit transaction text when enabled, SpendLens declares this in its App Store privacy label rather than claiming "Data Not Collected."</p>
+  <p>SpendLens has no accounts, no analytics, and no ads. Everything you enter stays on your iPhone — and in your own private iCloud container. One optional feature — <a href="#smart-parsing">Smart Parsing</a> — sends the text of a bank message or notification for processing, and is described in full below. It is off until you turn it on; when it is off, nothing you enter is sent anywhere by SpendLens except to your own iCloud. Because Smart Parsing can transmit transaction text when enabled, SpendLens declares this in its App Store privacy label rather than claiming "Data Not Collected."</p>
 
   <h2>Data storage</h2>
   <p>All data you enter into SpendLens — expenses, categories, notes, receipt images — is stored locally on your device using Apple's Core Data framework. The data lives inside the App's secure sandbox managed by iOS and is encrypted at rest by the operating system.</p>
-  <p>If you use Smart Parsing, captured items are stored the same way. So that you can see what a transaction came from and correct a bad parse, SpendLens keeps the <strong>original text of each captured message</strong> — the SMS body, or the text read from a screenshot — alongside the transaction it produced, on your device and in your private iCloud container. You can delete any captured item, or wipe everything, from within the App.</p>
+  <p>If you use Smart Parsing, captured items are stored the same way. So that you can see what a transaction came from and correct a bad parse, SpendLens keeps the <strong>original text of each captured item</strong> — the SMS body, the text of a bank app's notification, or the text read from a screenshot — alongside the transaction it produced, on your device and in your private iCloud container. For an Apple Pay purchase, what is kept is the merchant, amount and card name that iOS handed over. You can delete any captured item, or wipe everything, from within the App.</p>
 
   <h2>Data we do not collect</h2>
   <p>SpendLens does not collect, transmit, or store any of the following:</p>
@@ -164,6 +164,11 @@ footer {
   <h2>Camera access (optional)</h2>
   <p>SpendLens Pro includes an optional receipt scanning feature that uses your iPhone's camera. Camera access is only requested the first time you tap "Scan receipt" and is shown via the standard iOS permission prompt. All text recognition happens on-device using Apple's <strong>Vision framework</strong> — no images are uploaded or transmitted anywhere. The captured receipt image is stored only inside the linked expense in your local database. You can revoke camera access at any time via iOS Settings → Privacy → Camera.</p>
 
+  <h2>Apple Pay purchases (optional, on your device only)</h2>
+  <p>If you set up a Wallet automation in Apple's Shortcuts app, iOS hands SpendLens the details of an in-store Apple Pay payment the moment you tap: the <strong>merchant name, the amount, and the name of the card</strong> you paid with. SpendLens turns that into an expense entirely on your device.</p>
+  <p><strong>None of it is sent anywhere.</strong> This route does not use Smart Parsing, never touches our processing endpoint, and works with Smart Parsing switched off and with no internet connection at all. Apple's Wallet hands over in-store taps only — online and in-app Apple Pay, and your physical card, are not visible to it.</p>
+  <p>To stop it, delete the automation in the Shortcuts app. SpendLens has no other access to Apple Pay, Wallet, or your cards: it cannot see card numbers or balances, and it learns nothing about a payment made while that automation is absent.</p>
+
   <h2>Currency exchange rates</h2>
   <p>SpendLens fetches currency exchange rates through our own endpoint, which sources them from <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>. The rate table is refreshed once a day and cached, so the App works offline against the last rates it fetched. These requests ask for a list of currency rates only — they carry no expense data, no user data, no device identifiers, and no tracking information. The rate provider never sees anything about you or your spending.</p>
 
@@ -171,19 +176,22 @@ footer {
   <p>SpendLens uses <strong>Apple's StoreKit</strong> framework for one-time Pro unlocks and optional tip purchases. All payment processing is handled entirely by Apple under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy</a>. SpendLens never receives or stores your payment details, full name, or billing address.</p>
 
   <h2>Notifications</h2>
-  <p>SpendLens uses local notifications for the recurring expense reminders you set up, and to let you know when a captured transaction is waiting for review. These notifications are scheduled and delivered entirely on your device and do not involve any external push notification server. No notification data leaves your device.</p>
+  <p><strong>Notifications SpendLens sends you.</strong> SpendLens uses local notifications for the recurring expense reminders you set up, and to let you know when a captured transaction is waiting for review. These are scheduled and delivered entirely on your device and do not involve any external push notification server. SpendLens sends no notification data anywhere.</p>
+  <p><strong>Notifications SpendLens can read.</strong> This is a separate, optional feature. On iOS 27 you can create a Notification automation in Shortcuts that passes the text of an alert from a bank or card app <em>you choose</em> into SpendLens, so an online purchase is captured the way an SMS is. SpendLens cannot read notifications by itself — only those from the apps you picked, and only through that automation. Because that text is read by Smart Parsing, it is covered by <a href="#smart-parsing">the section below</a> and by the same opt-in switch.</p>
 
   <h2>Siri, Shortcuts &amp; App Intents</h2>
-  <p>SpendLens exposes App Intents to Siri and the Shortcuts app so you can voice-log expenses or check totals. When you use Siri, voice processing follows <a href="https://www.apple.com/legal/privacy/data/en/siri/" target="_blank" rel="noopener">Apple's Siri privacy practices</a>. SpendLens itself only receives the parsed parameters (e.g. amount, currency, merchant) and creates the expense locally on your device.</p>
+  <p>SpendLens exposes App Intents to Siri and the Shortcuts app, so you can open the add-expense screen by voice or ask for a total. When you use Siri, voice processing follows <a href="https://www.apple.com/legal/privacy/data/en/siri/" target="_blank" rel="noopener">Apple's Siri privacy practices</a>. SpendLens itself only receives the parameters the action carries, and works on your device.</p>
+  <p>Two of its actions exist for Shortcuts automations rather than for Siri, and have no spoken phrase: <strong>Capture Payment Notification</strong>, which passes an alert's text to <a href="#smart-parsing">Smart Parsing</a>, and <strong>Log Apple Pay Payment</strong>, which stays on your device. Each receives only what your own automation passes to it.</p>
 
-  <h2 id="smart-parsing">Smart Parsing — bank SMS and screenshots (optional, off by default)</h2>
+  <h2 id="smart-parsing">Smart Parsing — bank messages, notifications and screenshots (optional, off by default)</h2>
   <p>Smart Parsing is the one feature in SpendLens that uses the internet to process your content. It is opt-in and disabled until you turn it on.</p>
-  <p><strong>How it works.</strong> You create a Personal Automation in Apple's Shortcuts app that fires when a message arrives from a sender you choose. The Shortcut passes the message text to SpendLens through a published App Intent. SpendLens sends that text to our processing endpoint, which forwards it to Google's Gemini model to extract the amount, merchant, date, and currency. The structured result comes back and the transaction appears in your Expenses timeline for one-tap approval.</p>
+  <p><strong>How it works.</strong> You create a Personal Automation in Apple's Shortcuts app that fires when a message arrives from a sender you choose. The Shortcut passes the message text to SpendLens through a published App Intent. SpendLens sends that text to our processing endpoint, which forwards it to Google's Gemini model to extract the amount, merchant, date, and currency. The structured result comes back and the transaction appears in your Expenses timeline, waiting for you to confirm it — or added straight away, if you have switched on automatic approval.</p>
+  <p><strong>Bank notifications work the same way.</strong> On iOS 27 you can create a Notification automation instead of, or alongside, the message one. It fires when an app you pick — your bank or card app — posts an alert, and passes that alert's title, subtitle and body to SpendLens, which reads it exactly as it reads an SMS: same endpoint, same model, same switch. Only the apps you chose are ever involved.</p>
   <p><strong>Screenshots work the same way.</strong> If your bank sends push notifications instead of SMS, you can share a screenshot to SpendLens. The image is read on your device using Apple's Vision framework, and <strong>only the extracted text is sent</strong> for parsing — the image itself never leaves your iPhone, and it is deleted as soon as the text has been read.</p>
   <p><strong>What we do with that text.</strong> We keep none of it. Our processing endpoint is stateless — it holds the message only long enough to return a result, and it never writes message content to a log or a database. Your text is not used to train any AI model.</p>
-  <p><strong>What goes with the request.</strong> No account, no name, no device identifier, and no location — SpendLens has none of those to send. The request is authenticated with an app-level token shared by all copies of the App, not tied to you or your Apple ID. As with any web request, your IP address is visible to our endpoint; we use it only to rate-limit abuse, and we do not log it against your messages or build any profile from it.</p>
+  <p><strong>What goes with the request.</strong> No account, no name, no device identifier, and no location — SpendLens has none of those to send. What does travel with the text is the sender it came from — your bank's SMS sender ID, or the name of the app that posted the notification — and the list of your own category names, so the result can be filed correctly. The request is authenticated with an app-level token shared by all copies of the App, not tied to you or your Apple ID. As with any web request, your IP address is visible to our endpoint; we use it only to rate-limit abuse, and we do not log it against your messages or build any profile from it.</p>
   <p><strong>Sub-processors for this feature.</strong> <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a> (request routing) and <a href="https://cloud.google.com/terms/cloud-privacy-notice" target="_blank" rel="noopener">Google Cloud</a> (Gemini via Vertex AI). Each receives the message text in order to produce a parse result, and handles it under its own privacy terms — neither is given any information about who you are.</p>
-  <p><strong>iOS never gives any app direct access to your SMS</strong>, and SpendLens does not read your messages. Only the specific messages your automation forwards are ever processed. You can turn Smart Parsing off, or delete the automation in Shortcuts, at any time — and when it is off (the default), no message text is sent anywhere. Manual entry never touches the network.</p>
+  <p><strong>iOS never gives any app direct access to your SMS</strong>, and SpendLens does not read your messages. The same holds for notifications: iOS hands over only what your own automation forwards. Only those specific messages and alerts are ever processed. You can turn Smart Parsing off, or delete the automation in Shortcuts, at any time — and when it is off (the default), no message text is sent anywhere. Manual entry never touches the network.</p>
   <p><strong>Your consent.</strong> Smart Parsing is processed on the basis of your explicit consent, given by turning it on and withdrawable at any time by turning it off in Settings → Auto-Capture from SMS.</p>
 
   <h2>Children's privacy</h2>
@@ -205,7 +213,8 @@ footer {
   <ul>
     <li><strong>Export</strong> your data as CSV or PDF from Settings → Data</li>
     <li><strong>Delete</strong> all data instantly via Settings → Delete All Data</li>
-    <li><strong>Turn off Smart Parsing</strong> via Settings → Auto-Capture from SMS, so no message text is sent</li>
+    <li><strong>Turn off Smart Parsing</strong> via Settings → Auto-Capture from SMS, so no message or notification text is sent</li>
+    <li><strong>Stop Apple Pay or notification capture</strong> by deleting that automation in Apple's Shortcuts app</li>
     <li><strong>Stop iCloud sync</strong> via iOS Settings → [your name] → iCloud → Apps Using iCloud</li>
     <li><strong>Revoke permissions</strong> for camera, notifications, or Siri at any time in iOS Settings</li>
   </ul>
@@ -217,7 +226,7 @@ footer {
   <p>If you have questions about this privacy policy, write to <a href="mailto:businessforzeeshan@gmail.com">businessforzeeshan@gmail.com</a>. We are a solo developer team and respond to every email personally.</p>
 
   <div class="callout">
-    <p><strong>The short version:</strong> Your spending stays on your device. The only thing that can ever leave is the text of a bank message you choose to capture — and only if you turn on Smart Parsing, only for as long as it takes to pull out the amount and merchant. We never log it, never store it, never sell it, and it is never used to train a model.</p>
+    <p><strong>The short version:</strong> Your spending stays on your device. The only thing that can ever leave is the text of a bank message or notification you choose to capture — and only if you turn on Smart Parsing, only for as long as it takes to pull out the amount and merchant. Apple Pay purchases never leave your device at all. We never log that text, never store it, never sell it, and it is never used to train a model.</p>
   </div>
 </div>
 
