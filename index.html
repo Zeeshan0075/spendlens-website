@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpendLens — Privacy-first expense tracker for iPhone</title>
-<meta name="description" content="An iPhone expense tracker that reads your bank's SMS alerts. Free to try, one-time purchase to unlock Pro. No subscription. No bank linking. No account.">
-<meta property="og:title" content="SpendLens — Privacy-first expense tracker for iPhone">
-<meta property="og:description" content="Track every expense in seconds. Multi-currency, on-device receipt scanning, beautiful trends. One-time purchase, forever.">
+<title>SpendLens — Privacy-first expense tracker for iPhone and iPad</title>
+<meta name="description" content="An expense tracker for iPhone and iPad that fills itself in from Wallet taps, bank notifications and bank SMS. Free to try, one-time purchase to unlock Pro. No subscription. No bank linking. No account.">
+<meta property="og:title" content="SpendLens — Privacy-first expense tracker for iPhone and iPad">
+<meta property="og:description" content="Pay the way you always do and let the typing happen by itself. 57 currencies, English and Arabic, on-device receipt scanning. One-time purchase, forever.">
 <meta property="og:type" content="website">
 <!-- og:image must be absolute per the Open Graph spec; update this host on custom-domain migration. -->
-<meta property="og:image" content="https://zeeshan0075.github.io/spendlens-website/assets/og-image.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
-<meta property="og:image:alt" content="SpendLens app icon">
+<meta property="og:image" content="https://zeeshan0075.github.io/spendlens-website/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A hand holding an iPhone showing the SpendLens expenses list above a contactless payment terminal.">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
@@ -198,75 +198,68 @@ nav {
 }
 .hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
 
-/* ===== HERO PHONE MOCKUP ===== */
-.hero-phone-wrap {
+/* ===== HERO SCREENSHOT ===== */
+.hero-shot-wrap {
   margin-top: 80px;
   display: flex;
   justify-content: center;
-  position: relative;
 }
-.hero-phone {
+.hero-shot {
   width: 320px;
-  height: 660px;
   background: #0A0A0F;
   border: 8px solid #1a1a1f;
   border-radius: 48px;
-  padding: 18px;
+  padding: 8px;
   box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 100px var(--teal-glow);
-  position: relative;
 }
-.hero-phone-screen {
+.hero-shot img {
+  display: block;
   width: 100%;
-  height: 100%;
-  background: var(--bg);
-  border-radius: 32px;
-  padding: 20px;
-  overflow: hidden;
-  position: relative;
+  height: auto;
+  border-radius: 40px;
 }
-.notch {
-  position: absolute;
-  top: 8px; left: 50%;
-  transform: translateX(-50%);
-  width: 90px; height: 22px;
-  background: #000;
-  border-radius: 100px;
+
+/* ===== SCREENS STRIP ===== */
+/* Column auto-flow with overflow-x: five fit the 1080px container, and
+   anything narrower scrolls instead of leaving orphans on a second row. */
+.screens {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(180px, 1fr);
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
 }
-.mock-greeting { font-size: 13px; color: var(--text-3); margin-top: 36px; margin-bottom: 4px; }
-.mock-title { font-size: 26px; font-weight: 800; margin-bottom: 16px; }
-.mock-card {
-  background: linear-gradient(135deg, #1a2332 0%, #0d1a26 100%);
-  border-radius: 16px;
-  padding: 18px;
-  margin-bottom: 14px;
-  position: relative;
+.screen {
+  margin: 0;
+  scroll-snap-align: start;
 }
-.mock-card-label { font-size: 11px; color: var(--text-3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
-.mock-card-amount { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
-.mock-card-amount .currency { font-size: 16px; font-weight: 600; color: var(--text-2); margin-right: 6px; }
-.mock-card-trend { font-size: 12px; color: var(--green); margin-top: 8px; font-weight: 600; }
-.mock-row {
-  display: flex;
-  align-items: center;
-  background: var(--card);
+.screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
   border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 8px;
-  gap: 12px;
+  background: #0A0A0F;
 }
-.mock-row-icon {
-  width: 36px; height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
+.screen figcaption { margin-top: 16px; }
+.screen h3 { font-size: 15px; margin-bottom: 6px; }
+.screen p { font-size: 13px; color: var(--text-3); line-height: 1.55; }
+.screen .pro-tag { margin-left: 6px; }
+.pro-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+  border-radius: 5px;
+  padding: 2px 6px;
+  vertical-align: 2px;
 }
-.mock-row-text { flex: 1; }
-.mock-row-title { font-size: 13px; font-weight: 600; }
-.mock-row-sub { font-size: 11px; color: var(--text-3); }
-.mock-row-amt { font-size: 14px; font-weight: 700; }
 
 /* ===== CAPTURE SECTION ===== */
 .capture-block {
@@ -525,6 +518,7 @@ footer {
   .hero-sub { font-size: 18px; }
   .section h2 { font-size: 36px; }
   .features { grid-template-columns: 1fr; }
+  .screens { grid-auto-columns: minmax(170px, 68%); }
   .privacy-block { padding: 36px 24px; }
   .privacy-block h2 { font-size: 30px; }
   .capture-block { padding: 36px 24px; }
@@ -541,7 +535,7 @@ footer {
   .hero h1 { font-size: 40px; }
   .hero-sub { font-size: 16px; }
   .section { padding: 64px 20px; }
-  .hero-phone { width: 280px; height: 580px; }
+  .hero-shot { width: 280px; }
 }
 </style>
 </head>
@@ -554,7 +548,8 @@ footer {
   </a>
   <div class="nav-links">
     <a href="#capture">Auto-capture</a>
-    <a href="#features">Features</a>
+    <a href="#screens">Screens</a>
+      <a href="#features">Features</a>
     <a href="#privacy">Privacy</a>
     <a href="./support.html">Support</a>
     <a href="https://apps.apple.com/app/id6762673414" target="_blank" rel="noopener" class="nav-cta">Get the app</a>
@@ -572,7 +567,7 @@ footer {
     <span class="accent">Without giving anyone else the view.</span>
   </h1>
   <p class="hero-sub">
-    A beautiful expense tracker for iPhone that fills itself in from Apple Pay and
+    A beautiful expense tracker for iPhone and iPad that fills itself in from Apple Pay and
     your bank's alerts. No bank linking. No accounts. No subscription. Just iPhone,
     iCloud, and you.
   </p>
@@ -588,48 +583,17 @@ footer {
     <span>💳 No bank login</span>
     <span>🌍 57 currencies</span>
     <span>🌐 English &amp; Arabic</span>
-    <span>✨ One-time $6.99</span>
+    <span>✨ One-time purchase</span>
   </div>
 
-  <!-- Phone mockup -->
-  <div class="hero-phone-wrap">
-    <div class="hero-phone">
-      <div class="notch"></div>
-      <div class="hero-phone-screen">
-        <div class="mock-greeting">Good evening</div>
-        <div class="mock-title">Dashboard</div>
-        <div class="mock-card">
-          <div class="mock-card-label">This month</div>
-          <div class="mock-card-amount"><span class="currency">AED</span> 4,247.50</div>
-          <div class="mock-card-trend">↓ 12% vs this time last cycle</div>
-        </div>
-        <div class="mock-row">
-          <div class="mock-row-icon" style="background:rgba(255,234,167,0.15)">🛒</div>
-          <div class="mock-row-text">
-            <div class="mock-row-title">Carrefour MOE</div>
-            <div class="mock-row-sub">Groceries · Today</div>
-          </div>
-          <div class="mock-row-amt">AED 247</div>
-        </div>
-        <div class="mock-row">
-          <div class="mock-row-icon" style="background:rgba(255,107,138,0.15)">🍔</div>
-          <div class="mock-row-text">
-            <div class="mock-row-title">Talabat</div>
-            <div class="mock-row-sub">Food · Yesterday</div>
-          </div>
-          <div class="mock-row-amt">AED 68</div>
-        </div>
-        <div class="mock-row">
-          <div class="mock-row-icon" style="background:rgba(150,206,180,0.15)">🚗</div>
-          <div class="mock-row-text">
-            <div class="mock-row-title">Careem</div>
-            <div class="mock-row-sub">Transport · Yesterday</div>
-          </div>
-          <div class="mock-row-amt">AED 45</div>
-        </div>
-      </div>
+  <!-- Hero screenshot: the shipping Dashboard, demo data -->
+  <div class="hero-shot-wrap">
+    <div class="hero-shot">
+      <img src="./assets/shots/dashboard.webp" width="576" height="1251" decoding="async"
+           alt="The SpendLens dashboard: spent so far this cycle, a pacing chart, and where the money went by category.">
     </div>
   </div>
+
 </section>
 
 <!-- ===== AUTO-CAPTURE ===== -->
@@ -641,11 +605,12 @@ footer {
       Tap your phone at a till, get a text from your bank, or let your bank's app post an
       alert — any of them can become a logged expense. Set it up once with a Shortcuts
       automation: no bank login, no account linking, no aggregator holding your credentials.
+      You can also paste a message, share one to SpendLens, or hand it a screenshot.
     </p>
     <div class="capture-steps" style="margin-bottom:28px">
       <div class="capture-step">
-        <div class="capture-step-num">Apple Pay</div>
-        <p>Tap to pay in a shop and the purchase appears on its own, with the shop's real name. Read on your device, sent nowhere — it even works offline.</p>
+        <div class="capture-step-num">Tap to pay</div>
+        <p>Tap your phone at a till and the purchase appears on its own, with the shop's real name. Your Wallet tap is read on your device, sent nowhere — it even works offline.</p>
       </div>
       <div class="capture-step">
         <div class="capture-step-num">Bank alerts</div>
@@ -656,7 +621,7 @@ footer {
         <p>When the tap, the notification and the text all report one purchase, it's added once. Two real purchases at the same shop stay two.</p>
       </div>
     </div>
-    <p class="capture-note">Built for how banks in the UAE, Oman, Saudi, and across the GCC actually work. Nothing is captured until you set up an automation — <a href="./privacy.html#smart-parsing">here's exactly what happens to the text</a>.</p>
+    <p class="capture-note">Built for how banks in the UAE, Oman, Saudi, and across the GCC actually work. Money coming in — salary, a refund — is never added as an expense, and transfers with no shop behind them are left out unless you ask to review them. Nothing is captured until you set up an automation — <a href="./privacy.html#smart-parsing">here's exactly what happens to the text</a>.</p>
     <div class="capture-steps">
       <div class="capture-step">
         <div class="capture-step-num">Once</div>
@@ -674,6 +639,57 @@ footer {
   </div>
 </section>
 
+<!-- ===== SCREENS ===== -->
+<section class="section" id="screens">
+  <div class="section-header">
+    <div class="eyebrow">A look inside</div>
+    <h2>Real screens.<br>Not drawings.</h2>
+    <p class="section-lead">Every shot below is the shipping app, filled with demo data.</p>
+  </div>
+  <div class="screens">
+    <figure class="screen">
+      <img src="./assets/shots/expenses.webp" width="520" height="1130" loading="lazy" decoding="async"
+           alt="The SpendLens expenses list with three captured purchases at the top, labelled From Apple Pay, From a bank notification and Captured from SMS, each with a confirm and a dismiss button.">
+      <figcaption>
+        <h3>Three ways in, one list</h3>
+        <p>A Wallet tap, a bank notification and a bank SMS — each lined up in the timeline, each waiting for one tap.</p>
+      </figcaption>
+    </figure>
+    <figure class="screen">
+      <img src="./assets/shots/capture.webp" width="520" height="1130" loading="lazy" decoding="async"
+           alt="The SMS Capture settings screen, showing a status card reading On, purchases are being added, above toggles for Smart Parsing and related options.">
+      <figcaption>
+        <h3>You decide what runs</h3>
+        <p>Smart Parsing, automatic approval, the lock-screen banner, OTP filtering and transfer review are all switches you control.</p>
+      </figcaption>
+    </figure>
+    <figure class="screen">
+      <img src="./assets/shots/trends.webp" width="520" height="1130" loading="lazy" decoding="async"
+           alt="The Spending Trends screen comparing the current cycle with the same point last cycle, with a daily spending chart and category trends.">
+      <figcaption>
+        <h3>Compared fairly <span class="pro-tag">Pro</span></h3>
+        <p>Trends measure this cycle against the same point of the last one — not against a month that has already finished.</p>
+      </figcaption>
+    </figure>
+    <figure class="screen">
+      <img src="./assets/shots/privacy.webp" width="520" height="1130" loading="lazy" decoding="async"
+           alt="The Privacy Audit screen, listing what is sent when Smart Parsing is on and what stays on the iPhone.">
+      <figcaption>
+        <h3>A plain-language audit</h3>
+        <p>Settings spells out what leaves your phone while Smart Parsing is on, and what never leaves it at all.</p>
+      </figcaption>
+    </figure>
+    <figure class="screen">
+      <img src="./assets/shots/applepay.webp" width="520" height="1130" loading="lazy" decoding="async"
+           alt="The Apple Pay capture guide, a five-step walkthrough for building the Wallet automation in the Shortcuts app.">
+      <figcaption>
+        <h3>Set up once, in Shortcuts</h3>
+        <p>Five steps for the Wallet automation. After that, paying in a shop logs itself — no internet needed.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <!-- ===== FEATURES ===== -->
 <section class="section" id="features">
   <div class="section-header">
@@ -686,7 +702,7 @@ footer {
     <div class="feature">
       <div class="feature-icon">⚡️</div>
       <h3>Log in 5 seconds</h3>
-      <p>Two taps from home screen to logged expense. Quick-add widget, Action Button, or Siri — your call.</p>
+      <p>Siri, the Shortcuts app, or the Action Button open SpendLens straight on the add screen. Amount, category, done.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🌍</div>
@@ -700,23 +716,23 @@ footer {
     </div>
     <div class="feature">
       <div class="feature-icon">📷</div>
-      <h3>Receipt scanner</h3>
+      <h3>Receipt scanner <span class="pro-tag">Pro</span></h3>
       <p>Snap a receipt — Apple's Vision framework reads the total, merchant, and date. Entirely on your device.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">📊</div>
-      <h3>A dashboard that explains</h3>
+      <h3>Insights dashboard <span class="pro-tag">Pro</span></h3>
       <p>Plain words, not just charts: how this month is pacing, whether you're tracking above or below your usual, and where the money actually went.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">📈</div>
-      <h3>Trends that talk</h3>
-      <p>See category-by-category month-over-month changes with sparklines. Spot the spending creep early.</p>
+      <h3>Trends that talk <span class="pro-tag">Pro</span></h3>
+      <p>Category-by-category changes with sparklines, measured against the same point of your last cycle. Spot the spending creep early.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🪟</div>
-      <h3>5 widget sizes</h3>
-      <p>Small, medium, and large on the home screen, plus two lock screen widgets. Today's spend, monthly total, or recent activity — at a glance.</p>
+      <h3>Four widget sizes</h3>
+      <p>Small, medium and large on the home screen, plus a lock screen widget. The small one is free; the rest come with Pro.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🗣</div>
@@ -725,7 +741,7 @@ footer {
     </div>
     <div class="feature">
       <div class="feature-icon">📤</div>
-      <h3>Export anytime</h3>
+      <h3>Export anytime <span class="pro-tag">Pro</span></h3>
       <p>CSV for spreadsheets. PDF reports for accountants. Your data is always yours to take with you.</p>
     </div>
     <div class="feature">
@@ -764,15 +780,15 @@ footer {
     <div class="pricing-badge">⚡️ SpendLens Pro</div>
     <div class="pricing-name">Unlock everything</div>
     <div class="pricing-price">
-      <span class="pricing-amount">$6.99</span>
-      <span class="pricing-period">once</span>
+      <span class="pricing-amount">One time</span>
+      <span class="pricing-period">no subscription</span>
     </div>
-    <p class="pricing-tagline">Free to try with core expense tracking — and automatic capture from Apple Pay, bank texts and notifications — included.</p>
+    <p class="pricing-tagline">One purchase unlocks Pro for good; the App Store shows the price in your own currency. Free without it: expense tracking, every automatic-capture route, the small widget, and Siri.</p>
     <ul class="pricing-features">
-      <li><span class="check">✓</span> Unlimited categories</li>
+      <li><span class="check">✓</span> Your own custom categories</li>
       <li><span class="check">✓</span> AI receipt scanner</li>
       <li><span class="check">✓</span> Insights dashboard &amp; spending trends</li>
-      <li><span class="check">✓</span> All 5 widget sizes, home and lock screen</li>
+      <li><span class="check">✓</span> Medium, large and lock screen widgets</li>
       <li><span class="check">✓</span> Custom app icons</li>
       <li><span class="check">✓</span> CSV &amp; PDF export</li>
       <li><span class="check">✓</span> Every future update — free</li>

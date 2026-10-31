@@ -191,7 +191,7 @@ footer {
 
   <div class="faq">
     <h3>Is SpendLens free?</h3>
-    <p>SpendLens is free to download and includes core expense tracking — log unlimited expenses, use 12 default categories, and capture transactions automatically — from your bank's SMS alerts, from Apple Pay in shops, and from your bank app's notifications — all at no cost. <strong>SpendLens Pro</strong> is a one-time $6.99 unlock that opens up the insights dashboard, spending trends, the AI receipt scanner, custom categories, all 5 widget sizes, custom app icons, CSV/PDF export, and every future update. There are no subscriptions, ever.</p>
+    <p>SpendLens is free to download and includes core expense tracking — log unlimited expenses, use 12 default categories, and capture transactions automatically — from your bank's SMS alerts, from Apple Pay in shops, and from your bank app's notifications — all at no cost. <strong>SpendLens Pro</strong> is a one-time unlock that opens up the insights dashboard, spending trends, the AI receipt scanner, custom categories, the medium, large and lock screen widgets, custom app icons, CSV/PDF export, and every future update. There are no subscriptions, ever.</p>
   </div>
 
   <div class="faq">
@@ -251,7 +251,7 @@ footer {
 
   <div class="faq">
     <h3>How do widgets work?</h3>
-    <p>Long-press your iPhone home screen → tap the "+" in the top-left → search "SpendLens" → choose a size (small, medium, large, or one of the two lock screen widgets) → Add Widget. The small widget is free; medium, large, and both lock screen widgets require SpendLens Pro. Widgets refresh automatically and tap-through to the right screen in the app.</p>
+    <p>Long-press your iPhone home screen → tap the "+" in the top-left → search "SpendLens" → choose a size (small, medium, large, or the lock screen widget) → Add Widget. The small widget is free; medium, large and the lock screen widget require SpendLens Pro. Widgets refresh automatically and tap-through to the right screen in the app.</p>
   </div>
 
   <div class="faq">
@@ -280,7 +280,7 @@ footer {
   <div class="faq">
     <h3>How do I add Apple Pay purchases automatically?</h3>
     <p>Open SpendLens → Settings → Auto-Capture from SMS → <strong>Add Apple Pay purchases automatically</strong>. That opens a step-by-step guide. The whole thing is one automation in Apple's Shortcuts app, set up once.</p>
-    <p>The short version: in Shortcuts, open <strong>Automation</strong> → tap <strong>+</strong> → choose <em>"When I tap a Wallet pass or payment card"</em> (on some iOS versions it's called simply Wallet, or Transaction) → select every card you pay with, and untick <strong>Transport</strong> so metro and bus taps aren't logged → choose <strong>Run Immediately</strong> → <strong>New Blank Automation</strong> → <strong>Add Action</strong> → search for SpendLens → <strong>Log Apple Pay Payment</strong> → tap Merchant, Amount and Card in turn and pick the Shortcut Input's Merchant, Amount and Card or Pass.</p>
+    <p>The short version: in Shortcuts, open <strong>Automation</strong> → tap <strong>+</strong> → choose <em>"When I tap a Wallet pass or payment card"</em> (on some iOS versions it's called simply Wallet, or Transaction) → select every card you pay with, and untick <strong>Transport</strong> so metro and bus taps aren't logged → choose <strong>Run Immediately</strong> → <strong>New Blank Automation</strong> → <strong>Add Action</strong> → search for SpendLens → <strong>Log Wallet Payment</strong> → tap Merchant, Amount and Card in turn and pick the Shortcut Input's Merchant, Amount and Card or Pass.</p>
     <p>After that, paying in a shop adds the purchase on its own, with the shop's real name. This one is read entirely on your device — it works with Smart Parsing off and with no internet at all.</p>
     <p><strong>The honest limit:</strong> Apple only fires this for in-store taps. Online and in-app Apple Pay, and your physical card, don't trigger it — for those, set up the bank-notification automation on iOS 27, or keep SMS capture on. And running the automation by hand from the Shortcuts editor adds nothing; it needs a real payment.</p>
   </div>
@@ -305,6 +305,12 @@ footer {
     <h3>The same purchase showed up twice. What now?</h3>
     <p>It usually won't. When Apple Pay, your bank's notification and your bank's SMS all report the same purchase, SpendLens combines them into one expense and notes <em>Also from Apple Pay</em> on the row so you can see why. Where it isn't certain, it shows the row with a <strong>Same purchase?</strong> badge and lets you decide: ✓ keeps both, ✕ keeps one.</p>
     <p>If it went the other way and merged two genuinely separate purchases — two coffees at the same place ten minutes apart — swipe the row and choose <strong>2 purchases</strong>. The one it folded away comes back as its own expense.</p>
+  </div>
+
+  <div class="faq">
+    <h3>My salary landed and it was logged as an expense. Why?</h3>
+    <p>It shouldn't be — money coming in is dropped on purpose. SpendLens only adds outgoing payments, so salary credits and refunds never become expenses. Transfers with no shop behind them are left out too, unless you switch on <strong>Review transfers before ignoring</strong> in Settings → Auto-Capture from SMS, which shows them as a <em>Transfer?</em> row for you to judge.</p>
+    <p>If something incoming did slip through, swipe the row away and send us the message text — that's a parsing bug worth fixing.</p>
   </div>
 
   <div class="faq">
